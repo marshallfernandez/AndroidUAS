@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UAS</string>
+    <string name="uas_ab_especialidades">Specialties</string>
+    <string name="uas_ab_inicio">Informatic Engineering</string>
+    <string name="uas_bienvenida">Welcome!</string>
+    <string name="uas_ini_entrar">Login</string>
+    <string name="uas_ini_hint_pass">Password</string>
+    <string name="uas_ini_hint_usuario">Username</string>
+    <string name="uas_nav_aspectos">Aspects</string>
+    <string name="uas_nav_criterios">Criteria</string>
+    <string name="uas_nav_cursos">Courses</string>
+    <string name="uas_nav_inicio">Home</string>
+    <string name="uas_nav_objEd">Educational Objectives</string>
+    <string name="uas_nav_resEst">Student\'s Results</string>
+    <string name="uas_nav_rubricas">Rubrics</string>
+    <string name="uas_nav_salir">Logout</string>
+    <string name="uas_nav_unidadAcad">Academic Unit</string>
+    <string name="uas_alert_cerrarSesion_titulo">Logout</string>
+    <string name="uas_alert_no">No</string>
+    <string name="uas_alert_salirUAS_titulo">Close UAS</string>
+    <string name="uas_alert_salir_pregunta">Do you want to exit?</string>
+    <string name="uas_alert_si">Yes</string>
+    <string name="uas_ini_toast_camposNoVacio">The fields cannot be empty</string>
+    <string name="uas_ini_toast_nombUsuarioSoloNum">Username can only contains numbers</string>
+</resources>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/uas_plomo">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:padding="20dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView android:id="@+id/logo_inicial"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/uas_logo_nombre"
+                android:layout_centerInParent="true"/>
+
+            <Spinner android:id="@+id/languageSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/uas_ini_lenguajes"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:spinnerMode="dialog" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:orientation="vertical">
+
+        <EditText android:id="@+id/userTextLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:inputType="textPersonName"
+            android:maxLength="8"
+            android:hint="@string/uas_ini_hint_usuario"
+            android:textColorHint="@color/uas_plomo_oscuro"/>
+
+        <EditText android:id="@+id/userPassLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:inputType="textPassword"
+            android:maxLength="8"
+            android:hint="@string/uas_ini_hint_pass"
+            android:textColorHint="@color/uas_plomo_oscuro"/>
+
+        <Button android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/uas_ini_entrar"
+            android:textColor="@color/black"
+            android:background="@drawable/bg_button_login_selector"
+            android:layout_marginTop="5dp"
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
+
+</LinearLayout>

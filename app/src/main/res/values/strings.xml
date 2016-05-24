@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name" translatable="false">UAS</string>
+    <string name="action_settings" translatable="false">Settings</string>
+	
+	<!-- textos UAS -->
+	<string-array name="uas_ini_lenguajes">
+		<item>Idioma</item>
+		<item>Español</item>
+		<item>Inglés</item>
+	</string-array>
+
+	<string name="uas_bienvenida">¡Bienvenido!</string>
+	<string name="uas_ab_inicio">Ingeniería Informática</string>
+	<string name="uas_ab_especialidades">Especialidades</string>
+	<string name="uas_nav_inicio">Inicio</string>
+	<string name="uas_nav_unidadAcad">Unidad Académica</string>
+	<string name="uas_nav_objEd">Objetivos Educativos</string>
+	<string name="uas_nav_resEst">Resultados Estudiantiles</string>
+	<string name="uas_nav_rubricas">Rúbricas</string>
+	<string name="uas_nav_aspectos">Aspectos</string>
+	<string name="uas_nav_criterios">Criterios</string>
+	<string name="uas_nav_cursos">Cursos</string>
+	<string name="uas_nav_salir">Cerrar Sesión</string>
+	<string name="uas_ini_entrar">Iniciar Sesión</string>
+	<string name="uas_ini_hint_usuario">Usuario</string>
+	<string name="uas_ini_hint_pass">Contraseña</string>
+	<string name="uas_alert_cerrarSesion_titulo">Cerrar sesión</string>
+	<string name="uas_alert_salirUAS_titulo">Cerrar UAS</string>
+	<string name="uas_alert_salir_pregunta">¿Desea salir?</string>
+	<string name="uas_alert_si">Si</string>
+	<string name="uas_alert_no">No</string>
+	<string name="uas_ini_toast_camposNoVacio">Los campos no pueden estar vacíos</string>
+	<string name="uas_ini_toast_nombUsuarioSoloNum">El nombre de usuario sólo puede contener números</string>
+</resources>
