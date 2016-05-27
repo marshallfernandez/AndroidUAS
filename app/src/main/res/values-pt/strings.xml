@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">UAS</string>
+    <string name="uas_ab_especialidades">Especialidades</string>
+    <string name="uas_ab_inicio">Engenharia Informatica</string>
+    <string name="uas_alert_cerrarSesion_titulo">Fechar Sessão</string>
+    <string name="uas_alert_no">Não</string>
+    <string name="uas_alert_salirUAS_titulo">Fechar UAS</string>
+    <string name="uas_alert_salir_pregunta">Você gostaria de ir?</string>
+    <string name="uas_alert_si">Sim</string>
+    <string name="uas_bienvenida">Bem-vindo!</string>
+    <string name="uas_error_login">Usuário e / ou senha são inválidos</string>
+    <string name="uas_ini_entrar">Iniciar Sessão</string>
+    <string name="uas_ini_hint_pass">Senha</string>
+    <string name="uas_ini_hint_usuario">Nome de usuário</string>
+    <string name="uas_ini_spinner_espanol">Espanhol</string>
+    <string name="uas_ini_spinner_idioma">Idioma</string>
+    <string name="uas_ini_spinner_ingles">Inglês</string>
+    <string name="uas_ini_spinner_portugues">Português</string>
+    <string name="uas_ini_toast_camposNoVacio">Os campos não pode estar vazio</string>
+    <string name="uas_ini_toast_nombUsuarioSoloNum">Nome de usuário só pode contém números</string>
+    <string name="uas_nav_aspectos">Aspectos</string>
+    <string name="uas_nav_criterios">Critérios</string>
+    <string name="uas_nav_cursos">Cursos</string>
+    <string name="uas_nav_inicio">Iniciação</string>
+    <string name="uas_nav_objEd">Objetivos Educacionais</string>
+    <string name="uas_nav_resEst">Os Resultados Dos Alunos</string>
+    <string name="uas_nav_rubricas">Rubricas</string>
+    <string name="uas_nav_salir">Fechar Sessão</string>
+    <string name="uas_nav_unidadAcad">Unidade Acadêmica</string>
+    <string name="uas_texto_cargando">Carregando</string>
+</resources>

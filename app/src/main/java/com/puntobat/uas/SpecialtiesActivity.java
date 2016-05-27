@@ -3,26 +3,43 @@ package com.puntobat.uas;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.ListView;
+
+import com.puntobat.uas.adapters.SpecialtyAdapter;
+import com.puntobat.uas.controller.GetController;
+import com.puntobat.uas.ui.settings.LoadViewTask;
+import com.puntobat.uas.ui.settings.Loadingable;
 
 /**
  * Created by edu24 on 6/05/2016.
  */
-public class SpecialtiesActivity extends AppCompatActivity {
+public class SpecialtiesActivity extends AppCompatActivity implements Loadingable {
 
     ActionBar actionBar;
+    ListView listaxurreta;
 
-    LinearLayout linearSpecialty1;
+    @Override
+    public void heavyTask() {
+
+        GetController getController = new GetController(SpecialtiesActivity.this);
+        UAS.SPECIALTIES = getController.getSpecialties();
+
+    }
+
+    @Override
+    public void afterTask() {
+        listaxurreta = (ListView) findViewById(R.id.list_specialties);
+
+        SpecialtyAdapter specialtyAdapter = new SpecialtyAdapter(this, UAS.SPECIALTIES);
+
+        listaxurreta.setAdapter(specialtyAdapter);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,21 +50,12 @@ public class SpecialtiesActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         actionBar = getSupportActionBar();
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_cast_dark);
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_logout);
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(R.string.uas_ab_especialidades);
 
-        /*linearSpecialty1 = (LinearLayout) findViewById(R.id.linear_specialty1);
 
-        linearSpecialty1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SpecialtiesActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });*/
-
+        new LoadViewTask(SpecialtiesActivity.this, getResources().getString(R.string.uas_texto_cargando)).execute();
     }
 
 
@@ -69,6 +77,8 @@ public class SpecialtiesActivity extends AppCompatActivity {
                         .setPositiveButton(R.string.uas_alert_si, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(SpecialtiesActivity.this, InitialActivity.class);
+                                startActivity(intent);
                                 finish();
                             }
 

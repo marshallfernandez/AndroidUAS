@@ -23,4 +23,10 @@
     <string name="uas_nav_rubricas">Rúbricas</string>
     <string name="uas_nav_salir">Cerrar Sesión</string>
     <string name="uas_nav_unidadAcad">Unidad Académica</string>
+    <string name="uas_error_login">El usuario y/o contraseña son inválidos</string>
+    <string name="uas_ini_spinner_espanol">Español</string>
+    <string name="uas_ini_spinner_idioma">Idioma</string>
+    <string name="uas_ini_spinner_ingles">Inglés</string>
+    <string name="uas_ini_spinner_portugues">Portugués</string>
+    <string name="uas_texto_cargando">Cargando</string>
 </resources>

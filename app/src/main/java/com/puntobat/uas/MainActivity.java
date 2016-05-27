@@ -1,21 +1,13 @@
 package com.puntobat.uas;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -23,32 +15,51 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     ActionBar actionBar;
-    DrawerLayout drawerLayout;
-    LinearLayout navDrawerTablet;
     TextView nameProfile;
     TextView roleProfile;
     TextView facultyProfile;
-    ImageView profileImg;
+
+    LinearLayout homeLinear;
+    LinearLayout specialtiesLinear;
+    LinearLayout objectivesLinear;
+    LinearLayout resultStudLinear;
+    LinearLayout rubricsLinear;
+    LinearLayout aspectsLinear;
+    LinearLayout coursesLinear;
+    LinearLayout improveLinear;
+    LinearLayout resultEvalLinear;
+    LinearLayout logoutLinear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_tablet);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
 
         actionBar = getSupportActionBar();
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_media_route_disabled_mono_dark);
-        actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setTitle(R.string.uas_ab_inicio);
 
-        navDrawerTablet = (LinearLayout) findViewById(R.id.listview_drawer);
-        profileImg = (ImageView) findViewById(R.id.profile_image);
         nameProfile = (TextView) findViewById(R.id.name_profile);
         roleProfile = (TextView) findViewById(R.id.role_profile);
         facultyProfile = (TextView) findViewById(R.id.faculty_profile);
 
-        cambiaProporciones();
+        homeLinear = (LinearLayout) findViewById(R.id.home_linear);
+        specialtiesLinear = (LinearLayout) findViewById(R.id.specialties_linear);
+        objectivesLinear = (LinearLayout) findViewById(R.id.objectives_linear);
+        resultStudLinear = (LinearLayout) findViewById(R.id.result_stu_linear);
+        rubricsLinear = (LinearLayout) findViewById(R.id.rubrics_linear);
+        aspectsLinear = (LinearLayout) findViewById(R.id.aspects_linear);
+        coursesLinear = (LinearLayout) findViewById(R.id.courses_linear);
+        improveLinear = (LinearLayout) findViewById(R.id.improve_linear);
+        resultEvalLinear = (LinearLayout) findViewById(R.id.result_eval_linear);
+        logoutLinear = (LinearLayout) findViewById(R.id.logout_linear);
+
+        nameProfile.setText(UAS.USER.getTeacher().getName() + " " + UAS.USER.getTeacher().getLastName());
+        roleProfile.setText(UAS.USER.getTeacher().getCharge());
+        facultyProfile.setText(UAS.SPECIALTY.getName());
+
+        homeLinear.setPressed(true);
 
         //fragment seleccionado inicialmente
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -56,15 +67,6 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.container, new HomeFragment())
                 .commit();
 
-    }
-
-    private void cambiaProporciones(){
-        navDrawerTablet.getLayoutParams().width = UAS.screenWidth / 4;
-        profileImg.getLayoutParams().width = UAS.screenWidth / 8;
-
-        nameProfile.setTextSize(UAS.fontSize);
-        roleProfile.setTextSize(UAS.fontSize);
-        facultyProfile.setTextSize(UAS.fontSize);
     }
 
     @Override
@@ -76,19 +78,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                Intent intent = new Intent(MainActivity.this, SpecialtiesActivity.class);
-                startActivity(intent);
-                finish();
-                return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onBackPressed() {
-        new AlertDialog.Builder(this)
+        /*new AlertDialog.Builder(this)
                 .setIcon(R.mipmap.ic_launcher)
                 .setTitle(R.string.uas_alert_salirUAS_titulo)
                 .setMessage(R.string.uas_alert_salir_pregunta)
@@ -100,6 +95,6 @@ public class MainActivity extends AppCompatActivity {
 
                 })
                 .setNegativeButton(R.string.uas_alert_no, null)
-                .show();
+                .show();*/
     }
 }

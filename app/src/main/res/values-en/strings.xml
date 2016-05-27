@@ -23,4 +23,10 @@
     <string name="uas_alert_si">Yes</string>
     <string name="uas_ini_toast_camposNoVacio">The fields cannot be empty</string>
     <string name="uas_ini_toast_nombUsuarioSoloNum">Username can only contains numbers</string>
+    <string name="uas_error_login">Username and/or password are invalid</string>
+    <string name="uas_ini_spinner_espanol">Spanish</string>
+    <string name="uas_ini_spinner_idioma">Language</string>
+    <string name="uas_ini_spinner_ingles">English</string>
+    <string name="uas_ini_spinner_portugues">Portuguese</string>
+    <string name="uas_texto_cargando">Loading</string>
 </resources>

@@ -4,10 +4,13 @@
 	
 	<!-- textos UAS -->
 	<string-array name="uas_ini_lenguajes">
-		<item>Idioma</item>
-		<item>Español</item>
-		<item>Inglés</item>
+		<item>@string/uas_ini_spinner_idioma</item>
+		<item>@string/uas_ini_spinner_espanol</item>
+		<item>@string/uas_ini_spinner_ingles</item>
+		<item>@string/uas_ini_spinner_portugues</item>
 	</string-array>
+
+	<string name="uas_texto_cargando">Cargando</string>
 
 	<string name="uas_bienvenida">¡Bienvenido!</string>
 	<string name="uas_ab_inicio">Ingeniería Informática</string>
@@ -24,6 +27,10 @@
 	<string name="uas_ini_entrar">Iniciar Sesión</string>
 	<string name="uas_ini_hint_usuario">Usuario</string>
 	<string name="uas_ini_hint_pass">Contraseña</string>
+	<string name="uas_ini_spinner_idioma">Idioma</string>
+	<string name="uas_ini_spinner_espanol">Español</string>
+	<string name="uas_ini_spinner_ingles">Inglés</string>
+	<string name="uas_ini_spinner_portugues">Portugués</string>
 	<string name="uas_alert_cerrarSesion_titulo">Cerrar sesión</string>
 	<string name="uas_alert_salirUAS_titulo">Cerrar UAS</string>
 	<string name="uas_alert_salir_pregunta">¿Desea salir?</string>
@@ -31,4 +38,6 @@
 	<string name="uas_alert_no">No</string>
 	<string name="uas_ini_toast_camposNoVacio">Los campos no pueden estar vacíos</string>
 	<string name="uas_ini_toast_nombUsuarioSoloNum">El nombre de usuario sólo puede contener números</string>
+
+	<string name="uas_error_login">El usuario y/o contraseña son inválidos</string>
 </resources>
