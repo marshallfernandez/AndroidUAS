@@ -1,18 +1,18 @@
-package com.puntobat.uas;
+package com.puntobat.uas.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.puntobat.uas.R;
+
 /**
  * Created by edu24 on 29/04/2016.
  */
-public class HomeFragment extends Fragment {
+public class MaintFragment extends Fragment {
 
     ListView listaxurreta;
 
@@ -21,7 +21,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         setHasOptionsMenu(true);
 
-        View rootView = inflater.inflate(R.layout.home_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_maint, container, false);
 
         return rootView;
 

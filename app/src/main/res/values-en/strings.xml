@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">UAS</string>
     <string name="uas_ab_especialidades">Specialties</string>
-    <string name="uas_ab_inicio">Informatic Engineering</string>
+    <string name="uas_ab_inicio">My Specialty</string>
     <string name="uas_bienvenida">Welcome!</string>
     <string name="uas_ini_entrar">Login</string>
     <string name="uas_ini_hint_pass">Password</string>
@@ -29,4 +29,18 @@
     <string name="uas_ini_spinner_ingles">English</string>
     <string name="uas_ini_spinner_portugues">Portuguese</string>
     <string name="uas_texto_cargando">Loading</string>
+    <string name="uas_nav_resEval">Evaluation Results</string>
+    <string name="uas_nav_mejora">Continuous Improvement</string>
+    <string name="uas_no_internet">There\'s no internet connection</string>
+    <string name="uas_info_actualizada">Data updated correctly</string>
+    <string name="uas_educ_obj_semester">Semester</string>
+    <string name="uas_educ_obj_title">Educational Objective</string>
+    <string name="uas_home_codigo">Code:</string>
+    <string name="uas_home_coordinador">Coordinator:</string>
+    <string name="uas_home_criterios">Criteria Levels:</string>
+    <string name="uas_home_descripcion">Description:</string>
+    <string name="uas_home_aceptacion_porc">Acceptance Rate:</string>
+    <string name="uas_home_aceptacion">Acceptance Levels:</string>
+    <string name="uas_cont_improv_plans_tab">Suggestions</string>
+    <string name="uas_cont_improv_sugg_tab">Improvement Plans</string>
 </resources>

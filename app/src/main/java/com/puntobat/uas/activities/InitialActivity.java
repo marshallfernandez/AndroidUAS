@@ -1,8 +1,11 @@
-package com.puntobat.uas;
+package com.puntobat.uas.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Point;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
@@ -14,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.puntobat.uas.R;
+import com.puntobat.uas.constans.UAS;
 import com.puntobat.uas.controller.GetController;
 import com.puntobat.uas.request.LoginRequest;
 import com.puntobat.uas.ui.settings.LoadViewTask;
@@ -36,6 +41,11 @@ public class InitialActivity extends AppCompatActivity implements Loadingable {
 
         login = getController.login(loginRequest);
 
+        if (login) { //jalo todas la info de la bd en una
+            UAS.SPECIALTIES = getController.getSpecialties();
+            UAS.SPECIALTIESINFO = getController.getSpecialtiesInfo();
+        }
+
     }
 
     @Override
@@ -44,9 +54,8 @@ public class InitialActivity extends AppCompatActivity implements Loadingable {
             Intent intent = new Intent(InitialActivity.this, SpecialtiesActivity.class);
             startActivity(intent);
             finish();
-        }
-        else
-            Toast.makeText(InitialActivity.this,R.string.uas_error_login,Toast.LENGTH_SHORT).show();
+        } else
+            Toast.makeText(InitialActivity.this, R.string.uas_error_login, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -56,6 +65,17 @@ public class InitialActivity extends AppCompatActivity implements Loadingable {
     EditText passText;
     ImageView logo;
     boolean login;
+
+    public boolean isNetworkAvailable() {
+        ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = manager.getActiveNetworkInfo();
+
+        boolean isAvailable = false;
+        if (networkInfo != null && networkInfo.isConnected()) {
+            isAvailable = true;
+        }
+        return isAvailable;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +88,7 @@ public class InitialActivity extends AppCompatActivity implements Loadingable {
         config.locale = locale;
         getBaseContext().getResources().updateConfiguration(config,
                 getBaseContext().getResources().getDisplayMetrics());
-        setContentView(R.layout.initial_activity);
+        setContentView(R.layout.activity_initial);
 
         //se obtiene el tamaño de la pantalla
         Display display = getWindowManager().getDefaultDisplay();
@@ -87,14 +107,18 @@ public class InitialActivity extends AppCompatActivity implements Loadingable {
 
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                switch (position){
-                    case 1: cambiaIdioma("es");
+                switch (position) {
+                    case 1:
+                        cambiaIdioma("es");
                         break;
-                    case 2: cambiaIdioma("en");
+                    case 2:
+                        cambiaIdioma("en");
                         break;
-                    case 3: cambiaIdioma("pt");
+                    case 3:
+                        cambiaIdioma("pt");
                         break;
-                    default: break;
+                    default:
+                        break;
                 }
             }
 
@@ -115,7 +139,10 @@ public class InitialActivity extends AppCompatActivity implements Loadingable {
                 if (codigo.equals("") || contrasenha.equals("")) {
                     Toast.makeText(InitialActivity.this, R.string.uas_ini_toast_camposNoVacio, Toast.LENGTH_SHORT).show();
                 } else {
-                    new LoadViewTask(InitialActivity.this,getResources().getString(R.string.uas_texto_cargando)).execute();
+                    if (isNetworkAvailable())
+                        new LoadViewTask(InitialActivity.this, getResources().getString(R.string.uas_texto_cargando) + "...").execute();
+                    else
+                        Toast.makeText(InitialActivity.this, R.string.uas_no_internet, Toast.LENGTH_SHORT).show();
                     /*if(!UAS.esNumero(codigo)){
                         Toast.makeText(InitialActivity.this, R.string.uas_ini_toast_nombUsuarioSoloNum, Toast.LENGTH_SHORT).show();
                     }

@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">UAS</string>
     <string name="uas_ab_especialidades">Especialidades</string>
-    <string name="uas_ab_inicio">Ingeniería Informática</string>
+    <string name="uas_ab_inicio">Mi Especialidad</string>
     <string name="uas_alert_cerrarSesion_titulo">Cerrar Sesión</string>
     <string name="uas_alert_no">No</string>
     <string name="uas_alert_salirUAS_titulo">Cerrar UAS</string>
@@ -18,7 +18,7 @@
     <string name="uas_nav_criterios">Criterios</string>
     <string name="uas_nav_cursos">Cursos</string>
     <string name="uas_nav_inicio">Inicio</string>
-    <string name="uas_nav_objEd">Objetivos Educativos</string>
+    <string name="uas_nav_objEd">Objetivos Educacionales</string>
     <string name="uas_nav_resEst">Resultados Estudiantiles</string>
     <string name="uas_nav_rubricas">Rúbricas</string>
     <string name="uas_nav_salir">Cerrar Sesión</string>
@@ -29,4 +29,18 @@
     <string name="uas_ini_spinner_ingles">Inglés</string>
     <string name="uas_ini_spinner_portugues">Portugués</string>
     <string name="uas_texto_cargando">Cargando</string>
+    <string name="uas_nav_mejora">Mejora Contínua</string>
+    <string name="uas_nav_resEval">Resultados de Evaluaciones</string>
+    <string name="uas_no_internet">No hay conexión a internet</string>
+    <string name="uas_info_actualizada">Información actualizada correctamente</string>
+    <string name="uas_educ_obj_semester">Ciclo</string>
+    <string name="uas_educ_obj_title">Objetivo Educacional</string>
+    <string name="uas_home_codigo">Código:</string>
+    <string name="uas_home_coordinador">Coordinador:</string>
+    <string name="uas_home_descripcion">Descripción:</string>
+    <string name="uas_home_criterios">Niveles de Criterio:</string>
+    <string name="uas_home_aceptacion_porc">Porcentaje de Aceptación:</string>
+    <string name="uas_home_aceptacion">Niveles de Aceptación:</string>
+    <string name="uas_cont_improv_plans_tab">Sugerencias</string>
+    <string name="uas_cont_improv_sugg_tab">Planes de Mejora</string>
 </resources>
