@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_initial_linear"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -71,11 +72,41 @@
                     android:layout_height="0dp"
                     android:layout_weight="0.4"/>
 
-                <EditText android:id="@+id/userTextLogin"
-                    style="@style/EditTextsLogin"
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.2"
-                    android:inputType="textPersonName"
-                    android:hint="@string/uas_ini_hint_usuario"/>
+                    android:orientation="horizontal">
+
+                    <EditText android:id="@+id/userTextLogin"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.8"
+                        android:textColor="@color/black"
+                        android:typeface="monospace"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:maxLength="8"
+                        android:inputType="textPersonName"
+                        android:hint="@string/uas_ini_hint_usuario"
+                        android:textColorHint="@color/uas_plomo_oscuro"/>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.2"
+                        android:padding="12dp">
+
+                        <ImageView android:id="@+id/ini_button_delete_username"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_x_gray"/>
+
+                    </RelativeLayout>
+
+
+
+                </LinearLayout>
 
                 <View
                     android:layout_width="0dp"
@@ -95,11 +126,39 @@
                     android:layout_height="0dp"
                     android:layout_weight="0.4"/>
 
-                <EditText android:id="@+id/userPassLogin"
-                    style="@style/EditTextsLogin"
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="0.2"
-                    android:inputType="textPassword"
-                    android:hint="@string/uas_ini_hint_pass"/>
+                    android:orientation="horizontal">
+
+                    <EditText android:id="@+id/userPassLogin"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.8"
+                        android:textColor="@color/black"
+                        android:typeface="monospace"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:maxLength="12"
+                        android:inputType="textPassword"
+                        android:hint="@string/uas_ini_hint_pass"
+                        android:textColorHint="@color/uas_plomo_oscuro"/>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.2"
+                        android:padding="12dp">
+
+                        <ImageView android:id="@+id/ini_button_pass_visible"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/ic_eye"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
 
                 <View
                     android:layout_width="0dp"
@@ -112,25 +171,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.3"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.4"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                <Button android:id="@+id/loginButton"
-                    style="@style/EditTextsLogin"
-                    android:layout_weight="0.2"
-                    android:text="@string/uas_ini_entrar"
-                    android:background="@drawable/bg_button_login_selector"
-                    android:layout_marginTop="5dp"
-                    android:textAllCaps="false"/>
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.4"/>
+                    <Button android:id="@+id/loginButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/uas_ini_entrar"
+                        android:textColor="@color/black"
+                        android:typeface="monospace"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:background="@drawable/bg_button_login_selector"
+                        android:textAllCaps="false"
+                        android:padding="@dimen/general_bg_padding"
+                        android:layout_centerInParent="true"/>
+
+                </RelativeLayout>
 
             </LinearLayout>
 

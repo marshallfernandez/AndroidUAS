@@ -2,6 +2,7 @@ package com.puntobat.uas.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
@@ -15,9 +16,10 @@ import android.widget.TextView;
 
 import com.puntobat.uas.R;
 import com.puntobat.uas.constans.UAS;
-import com.puntobat.uas.fragments.AspectFragment;
+import com.puntobat.uas.fragments.AspectsFragment;
 import com.puntobat.uas.fragments.ContinuousImprovementFragment;
-import com.puntobat.uas.fragments.EducationalObjectiveFragment;
+import com.puntobat.uas.fragments.CoursesFragment;
+import com.puntobat.uas.fragments.EducationalObjectivesFragment;
 import com.puntobat.uas.fragments.HomeFragment;
 import com.puntobat.uas.fragments.MaintFragment;
 
@@ -41,10 +43,15 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout resultEvalLinear;
     LinearLayout logoutLinear;
 
+    SharedPreferences myPrefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_tablet);
+
+        myPrefs = getSharedPreferences(UAS.MYSHAREDPREFERENCENAME, MODE_PRIVATE);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(toolbar);
 
@@ -104,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, new EducationalObjectiveFragment())
+                        .replace(R.id.container, new EducationalObjectivesFragment())
                         .commit();
             }
         });
@@ -132,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
 
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, new AspectFragment())
+                        .replace(R.id.container, new AspectsFragment())
                         .commit();
             }
         });
@@ -146,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, new MaintFragment())
+                        .replace(R.id.container, new CoursesFragment())
                         .commit();
             }
         });
@@ -192,6 +199,9 @@ public class MainActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent = new Intent(MainActivity.this, InitialActivity.class);
                                 startActivity(intent);
+                                SharedPreferences.Editor editor = myPrefs.edit();
+                                editor.clear();
+                                editor.commit();
                                 finish();
                             }
 

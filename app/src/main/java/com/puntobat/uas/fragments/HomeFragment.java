@@ -51,7 +51,7 @@ public class HomeFragment extends Fragment {
         specialtyName.setText(name);
         specialtyCode.setText(aux.getCode());
         specialtyDescription.setText(aux.getDescription());
-        specialtyCoordinator.setText("");
+        specialtyCoordinator.setText(aux.getTeacher().getName() + " " + aux.getTeacher().getLastName());
         specialtyCriteria.setText("");
         specialtyAcceptance.setText("");
         specialtyAcceptancePorc.setText("");

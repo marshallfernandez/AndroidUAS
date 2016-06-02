@@ -43,4 +43,8 @@
     <string name="uas_home_aceptacion">Acceptance Levels:</string>
     <string name="uas_cont_improv_plans_tab">Suggestions</string>
     <string name="uas_cont_improv_sugg_tab">Improvement Plans</string>
+    <string name="uas_aspectos_titulo_resultado">Student\'s Result</string>
+    <string name="uas_courses_ver_horarios">View Schedules</string>
+    <string name="uas_courses_codigo">Code:</string>
+    <string name="uas_courses_nivel">Level:</string>
 </resources>

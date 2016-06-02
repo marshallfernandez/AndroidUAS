@@ -43,4 +43,8 @@
     <string name="uas_home_descripcion">Descrição:</string>
     <string name="uas_cont_improv_plans_tab">Sugestões</string>
     <string name="uas_cont_improv_sugg_tab">Planos de Melhoria</string>
+    <string name="uas_aspectos_titulo_resultado">Resultado Dos Alunos</string>
+    <string name="uas_courses_ver_horarios">Visualização Programações</string>
+    <string name="uas_courses_codigo">Código:</string>
+    <string name="uas_courses_nivel">Nívei:</string>
 </resources>

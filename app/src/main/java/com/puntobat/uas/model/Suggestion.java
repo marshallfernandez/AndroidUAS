@@ -11,7 +11,7 @@ public class Suggestion {
     private int idImprovePlanType;
     private int idTeacher;
     private int idSpecialty;
-    private Date date;
+    private String date;
     private String title;
     private String description;
     private Teacher teacher;
@@ -54,11 +54,11 @@ public class Suggestion {
         this.idSpecialty = idSpecialty;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

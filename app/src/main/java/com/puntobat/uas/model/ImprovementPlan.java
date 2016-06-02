@@ -16,7 +16,7 @@ public class ImprovementPlan {
     private String causeAnalisis;
     private String find;
     private String description;
-    private Date implementationDate;
+    private String implementationDate;
     private String status;
     private ImprovementPlanType improvementPlanType;
     private Teacher teacher;
@@ -98,11 +98,11 @@ public class ImprovementPlan {
         this.description = description;
     }
 
-    public Date getImplementationDate() {
+    public String getImplementationDate() {
         return implementationDate;
     }
 
-    public void setImplementationDate(Date implementationDate) {
+    public void setImplementationDate(String implementationDate) {
         this.implementationDate = implementationDate;
     }
 

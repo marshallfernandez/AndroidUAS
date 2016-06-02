@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/bg_list_specialty_selector"
+    android:layout_margin="@dimen/general_bg_padding"
     android:padding="10dp">
 
     <ImageView android:id="@+id/ic_specialty1"

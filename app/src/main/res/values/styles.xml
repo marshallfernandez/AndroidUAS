@@ -14,6 +14,7 @@
     </style>
 
     <style name="ToolbarTheme">
+        <item name="android:typeface">monospace</item>
         <item name="android:textColorPrimary">@color/white</item>
         <item name="colorPrimary">@color/uas_azul</item>
         <item name="colorPrimaryDark">@color/uas_azul</item>

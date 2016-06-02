@@ -17,5 +17,6 @@
     <color name="uas_azul_oscuro">#1a2836</color>
     <color name="uas_azul_claro">#3d5b79</color>
 	<color name="uas_plomo">#F7F7F7</color>
+    <color name="uas_plomo_fondo">#cfcfcf</color>
     <color name="uas_plomo_oscuro">#7a7a7a</color>
 </resources>

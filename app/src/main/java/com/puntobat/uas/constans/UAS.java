@@ -35,6 +35,15 @@ public class UAS {
 
     public static int INFOINDEX;
 
+    public static String MYSHAREDPREFERENCENAME = "MyPrefs";
+    public static String SPECIALTIESNUMBERKEY = "NumSpecs";
+    public static String SPECIALTIESKEY = "Specialty";
+    public static String SPECIALTIESINFOKEY = "SpecialtyInfo";
+    public static String USERNAMEKEY = "Username";
+    public static String PASSWORDKEY = "Password";
+    public static String LANGUAGEKEY = "Language";
+    public static String USERKEY = "User";
+
     public static boolean esNumero(String str) {
         for (char c : str.toCharArray()) {
             if (!Character.isDigit(c)) return false;
@@ -55,11 +64,32 @@ public class UAS {
         return null;
     }
 
-    public static Specialty getSpecialtyById(int idSpecialty){
-        for(Specialty specialty:SPECIALTIES)
-            if(specialty.getId()==idSpecialty)
+    public static Specialty getSpecialtyById(int idSpecialty) {
+        for (Specialty specialty : SPECIALTIES)
+            if (specialty.getId() == idSpecialty)
                 return specialty;
 
         return null;
+    }
+
+    private static boolean semesterExists(String str, ArrayList<String> list) {
+        for (String string : list) {
+            if (string.compareTo(str) == 0)
+                return true;
+        }
+
+        return false;
+    }
+
+    public static ArrayList<String> getSemestersByEducObjs() {
+        ArrayList<String> semesters = new ArrayList<String>();
+        ArrayList<EducationalObjective> listAux = SPECIALTIESINFO.get(INFOINDEX).EDUCATIONALOBJECTIVES;
+
+        for (EducationalObjective educationalObjective : listAux) {
+            if (!semesterExists(educationalObjective.getSemesterReg(), semesters))
+                semesters.add(new String(educationalObjective.getSemesterReg()));
+        }
+
+        return semesters;
     }
 }

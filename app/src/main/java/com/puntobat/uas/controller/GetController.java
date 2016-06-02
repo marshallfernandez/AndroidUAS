@@ -36,6 +36,53 @@ public class GetController extends Controller {
         super(context);
     }
 
+    public void updateToken(LoginRequest login){
+
+        HTTPConnector poster = new HTTPConnector();
+        Gson gs = new Gson();
+        String result = "";
+
+        try {
+            String req = gs.toJson(login);
+            String path = FrameworkConstans.SERVER_DOMAIN + FrameworkConstans.LOGIN_PATH;
+            result = poster.postREST(path, req, poster.JSON_TYPE);
+        } catch (Exception d) {
+            d.printStackTrace();
+        }
+
+        try {
+            JSONObject jsonResponse = new JSONObject(result);
+            FrameworkConstans.TOKEN = jsonResponse.getString("token");
+
+            JSONObject userObject = jsonResponse.getJSONObject("user");
+            JSONObject teacherObject = userObject.getJSONObject("professor");
+            User user = new User();
+            Teacher teacher = new Teacher();
+
+            teacher.setId(teacherObject.getInt("IdDocente"));
+            teacher.setIdSpecialty(Integer.valueOf(teacherObject.getString("IdEspecialidad")));
+            teacher.setIdUser(Integer.valueOf(teacherObject.getString("IdUsuario")));
+            teacher.setCode(teacherObject.getString("Codigo"));
+            teacher.setName(teacherObject.getString("Nombre"));
+            teacher.setLastName(teacherObject.getString("ApellidoPaterno"));
+            teacher.setSecondLastName(teacherObject.getString("ApellidoMaterno"));
+            teacher.setEmail(teacherObject.getString("Correo"));
+            teacher.setCharge(teacherObject.getString("Cargo"));
+            teacher.setValid(Integer.valueOf(teacherObject.getString("Vigente")));
+            teacher.setDescription(teacherObject.getString("Descripcion"));
+
+            user.setIdUser(userObject.getInt("IdUsuario"));
+            user.setIdProfile(Integer.valueOf(userObject.getString("IdPerfil")));
+            user.setUserName(userObject.getString("Usuario"));
+            user.setTeacher(teacher);
+
+            UAS.USER = user;
+
+        } catch (Exception d) {
+
+        }
+    }
+
     public boolean login(LoginRequest login) {
 
         boolean connect = false;
@@ -114,12 +161,28 @@ public class GetController extends Controller {
 
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject object = (JSONObject) jsonArray.get(i);
+                JSONObject teacherObj = (JSONObject) object.getJSONObject("coordinator");
                 Specialty specialty = new Specialty();
+                Teacher teacher = new Teacher();
 
                 specialty.setId(object.getInt("IdEspecialidad"));
                 specialty.setCode(object.getString("Codigo"));
                 specialty.setName(object.getString("Nombre"));
                 specialty.setDescription(object.getString("Descripcion"));
+
+                teacher.setId(teacherObj.getInt("IdDocente"));
+                teacher.setIdSpecialty(Integer.valueOf(teacherObj.getString("IdEspecialidad")));
+                teacher.setIdUser(Integer.valueOf(teacherObj.getString("IdUsuario")));
+                teacher.setCode(teacherObj.getString("Codigo"));
+                teacher.setName(teacherObj.getString("Nombre"));
+                teacher.setLastName(teacherObj.getString("ApellidoPaterno"));
+                teacher.setSecondLastName(teacherObj.getString("ApellidoMaterno"));
+                teacher.setEmail(teacherObj.getString("Correo"));
+                teacher.setCharge(teacherObj.getString("Cargo"));
+                teacher.setValid(Integer.valueOf(teacherObj.getString("Vigente")));
+                teacher.setDescription(teacherObj.getString("Descripcion"));
+
+                specialty.setTeacher(teacher);
 
                 listSpecialties.add(specialty);
             }
@@ -435,21 +498,29 @@ public class GetController extends Controller {
                 JSONObject teacherObj = object.getJSONObject("teacher");
 
                 impPlan.setId(object.getInt("IdPlanMejora"));
-                impPlan.setIdSpecialty(Integer.valueOf(object.getString("IdEspecialidad")));
                 impPlan.setIdImprovementPlanType(Integer.valueOf(object.getString("IdTipoPlanMejora")));
-                impPlan.setIdEntryFile(Integer.valueOf(object.getString("IdArchivoEntrada")));
+                impPlan.setIdSpecialty(Integer.valueOf(object.getString("IdEspecialidad")));
+
+                /*String aux = object.getString("IdArchivoEntrada");
+
+                if (aux != null)
+                    impPlan.setIdEntryFile(Integer.valueOf(aux));
+                else
+                    impPlan.setIdEntryFile(-1);*/
+
                 impPlan.setIdTeacher(Integer.valueOf(object.getString("IdDocente")));
                 impPlan.setIdentificator(object.getString("Identificador"));
                 impPlan.setCauseAnalisis(object.getString("AnalisisCausal"));
                 impPlan.setFind(object.getString("Hallazgo"));
                 impPlan.setDescription(object.getString("Descripcion"));
-                impPlan.setImplementationDate(Date.valueOf(object.getString("FechaImplementacion")));
+                impPlan.setImplementationDate(object.getString("FechaImplementacion"));
                 impPlan.setStatus(object.getString("Estado"));
 
                 imPlanType.setId(impPlanTypeObj.getInt("IdTipoPlanMejora"));
                 imPlanType.setIdSpecialty(Integer.valueOf(impPlanTypeObj.getString("IdEspecialidad")));
                 imPlanType.setCode(impPlanTypeObj.getString("Codigo"));
                 imPlanType.setTopic(impPlanTypeObj.getString("Tema"));
+                imPlanType.setDescription(impPlanTypeObj.getString("Descripcion"));
 
                 teacher.setId(teacherObj.getInt("IdDocente"));
                 teacher.setIdSpecialty(Integer.valueOf(teacherObj.getString("IdEspecialidad")));
@@ -505,17 +576,18 @@ public class GetController extends Controller {
                 JSONObject impPlanTypeObj = object.getJSONObject("type_improvement_plan");
                 JSONObject teacherObj = object.getJSONObject("teacher");
 
-                suggestion.setId(object.getInt("IdPlanMejora"));
-                suggestion.setIdSpecialty(Integer.valueOf(object.getString("IdEspecialidad")));
+                suggestion.setId(object.getInt("IdSugerencia"));
                 suggestion.setIdImprovePlanType(Integer.valueOf(object.getString("IdTipoPlanMejora")));
                 suggestion.setIdTeacher(Integer.valueOf(object.getString("IdDocente")));
+                suggestion.setIdSpecialty(Integer.valueOf(object.getString("IdEspecialidad")));
+                suggestion.setDate(object.getString("Fecha"));
                 suggestion.setTitle(object.getString("Titulo"));
                 suggestion.setDescription(object.getString("Descripcion"));
-                suggestion.setDate(Date.valueOf(object.getString("Fecha")));
 
                 imPlanType.setId(impPlanTypeObj.getInt("IdTipoPlanMejora"));
                 imPlanType.setIdSpecialty(Integer.valueOf(impPlanTypeObj.getString("IdEspecialidad")));
                 imPlanType.setCode(impPlanTypeObj.getString("Codigo"));
+                imPlanType.setDescription(impPlanTypeObj.getString("Descripcion"));
                 imPlanType.setTopic(impPlanTypeObj.getString("Tema"));
 
                 teacher.setId(teacherObj.getInt("IdDocente"));

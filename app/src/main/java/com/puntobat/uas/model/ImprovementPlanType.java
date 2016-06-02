@@ -11,6 +11,7 @@ public class ImprovementPlanType {
     private int idSpecialty;
     private String code;
     private String topic;
+    private String description;
     private Date created_at;
     private Date updated_at;
     private Date deleted_at;
@@ -47,6 +48,14 @@ public class ImprovementPlanType {
 
     public void setTopic(String topic) {
         this.topic = topic;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Date getCreated_at() {

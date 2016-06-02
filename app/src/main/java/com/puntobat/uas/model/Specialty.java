@@ -11,6 +11,7 @@ public class Specialty {
     private String code;
     private String name;
     private String description;
+    private Teacher teacher;
     private Date created_at;
     private Date updated_at;
     private Date deleted_at;
@@ -47,6 +48,14 @@ public class Specialty {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 
     public Date getDeleted_at() {
