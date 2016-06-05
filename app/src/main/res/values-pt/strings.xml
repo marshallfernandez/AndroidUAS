@@ -47,4 +47,15 @@
     <string name="uas_courses_ver_horarios">Visualização Programações</string>
     <string name="uas_courses_codigo">Código:</string>
     <string name="uas_courses_nivel">Nívei:</string>
+    <string name="uas_improv_plan_usuario">Usuário:</string>
+    <string name="uas_improv_plan_creador">Criador:</string>
+    <string name="uas_improv_plan_fechai">Data de Início:</string>
+    <string name="uas_improv_plan_fechaf">Data de Término:</string>
+    <string name="uas_improv_plan_descripcion">Descrição:</string>
+    <string name="uas_improv_plan_descargar">Baixar</string>
+    <string name="uas_improv_plan_actividades">Ver as Atividades</string>
+    <string name="uas_ini_usuarios">Usuários</string>
+    <string name="uas_ini_dialog_titulo">Os Utilizadores Registados</string>
+    <string name="uas_ini_dialog_titulo_confirm_pass">Confirmar Senha</string>
+    <string name="uas_ini_dialog_confirm_pass">Confirmar Senha</string>
 </resources>

@@ -47,4 +47,15 @@
     <string name="uas_courses_ver_horarios">Ver Horarios</string>
     <string name="uas_courses_codigo">Código:</string>
     <string name="uas_courses_nivel">Nivel:</string>
+    <string name="uas_improv_plan_usuario">Usuario:</string>
+    <string name="uas_improv_plan_creador">Creador:</string>
+    <string name="uas_improv_plan_fechaf">Fecha Fin:</string>
+    <string name="uas_improv_plan_fechai">Fecha Inicio:</string>
+    <string name="uas_improv_plan_descripcion">Descripción</string>
+    <string name="uas_improv_plan_descargar">Descargar</string>
+    <string name="uas_improv_plan_actividades">Ver Actividades</string>
+    <string name="uas_ini_usuarios">Usuarios</string>
+    <string name="uas_ini_dialog_titulo">Usuarios Registrados</string>
+    <string name="uas_ini_dialog_titulo_confirm_pass">Confirmar Contraseña</string>
+    <string name="uas_ini_dialog_confirm_pass">Confirmar Contraseña</string>
 </resources>

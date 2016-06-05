@@ -1,5 +1,6 @@
 package com.puntobat.uas.activities;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -7,7 +8,6 @@ import android.content.res.Configuration;
 import android.graphics.Point;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
@@ -21,13 +21,17 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.puntobat.uas.R;
+import com.puntobat.uas.components.CoursesComponent;
+import com.puntobat.uas.components.IniUsersComponent;
 import com.puntobat.uas.constans.UAS;
 import com.puntobat.uas.controller.GetController;
 import com.puntobat.uas.helpers.SpecialtyInfo;
+import com.puntobat.uas.model.Course;
 import com.puntobat.uas.model.Specialty;
 import com.puntobat.uas.model.User;
 import com.puntobat.uas.request.LoginRequest;
@@ -43,6 +47,7 @@ import java.util.Locale;
 public class InitialActivity extends AppCompatActivity implements Loadingable {
 
     Button loginButton;
+    Button usersButton;
     ImageView visiblePassButton;
     ImageView deleteUserButton;
     Spinner langSpinner;
@@ -51,12 +56,19 @@ public class InitialActivity extends AppCompatActivity implements Loadingable {
     ImageView logo;
     LinearLayout bgLinear;
     boolean login;
+    UsersDialog usersDialog;
 
     SharedPreferences myPref;
 
     private void saveSPData() {
         SharedPreferences.Editor prefsEditor = myPref.edit();
         Gson gson = new Gson();
+        int usersNum = UAS.getExistsUser(myPref, userText.getText().toString());
+
+        if (usersNum == -1) {
+            usersNum = myPref.getInt(UAS.LOGGEDUSERSNUMBERKEY, 0);
+            usersNum++;
+        }
 
         //saving info
         for (int i = 1; i <= UAS.SPECIALTIES.size(); i++) {
@@ -65,18 +77,34 @@ public class InitialActivity extends AppCompatActivity implements Loadingable {
             String jsonSpec = gson.toJson(spec);
             String jsonSpecInfo = gson.toJson(specInfo);
 
-            prefsEditor.putString("" + UAS.SPECIALTIESKEY + i, jsonSpec);
-            prefsEditor.putString("" + UAS.SPECIALTIESINFOKEY + i, jsonSpecInfo);
+            prefsEditor.remove("User" + usersNum + UAS.SPECIALTIESKEY + i);
+            prefsEditor.remove("User" + usersNum + UAS.SPECIALTIESINFOKEY + i);
+            prefsEditor.putString("User" + usersNum + UAS.SPECIALTIESKEY + i, jsonSpec);
+            prefsEditor.putString("User" + usersNum + UAS.SPECIALTIESINFOKEY + i, jsonSpecInfo);
         }
 
         //saving user
         String jsonUser = gson.toJson(UAS.USER);
-        prefsEditor.putString(UAS.USERKEY,jsonUser);
+        prefsEditor.remove("User" + usersNum + UAS.USERKEY);
+        prefsEditor.putString("User" + usersNum + UAS.USERKEY, jsonUser);
 
-        prefsEditor.putInt(UAS.SPECIALTIESNUMBERKEY, UAS.SPECIALTIES.size());
-        prefsEditor.putString(UAS.USERNAMEKEY, userText.getText().toString());
-        prefsEditor.putString(UAS.PASSWORDKEY, passText.getText().toString());
-        prefsEditor.putString(UAS.LANGUAGEKEY, UAS.appLanguage);
+        prefsEditor.remove("User" + usersNum + UAS.SPECIALTIESNUMBERKEY);
+        prefsEditor.remove("User" + usersNum + UAS.USERNAMEKEY);
+        prefsEditor.remove("User" + usersNum + UAS.PASSWORDKEY);
+        prefsEditor.remove("User" + usersNum + UAS.LANGUAGEKEY);
+        prefsEditor.putInt("User" + usersNum + UAS.SPECIALTIESNUMBERKEY, UAS.SPECIALTIES.size());
+        prefsEditor.putString("User" + usersNum + UAS.USERNAMEKEY, userText.getText().toString());
+        prefsEditor.putString("User" + usersNum + UAS.PASSWORDKEY, passText.getText().toString());
+        prefsEditor.putString("User" + usersNum + UAS.LANGUAGEKEY, UAS.appLanguage);
+
+        prefsEditor.remove(UAS.LOGGEDUSERSNUMBERKEY);
+        prefsEditor.putInt(UAS.LOGGEDUSERSNUMBERKEY, usersNum);
+
+        prefsEditor.remove(UAS.ISLOGGEDKEY);
+        prefsEditor.putBoolean(UAS.ISLOGGEDKEY, true);
+
+        prefsEditor.remove(UAS.LOGGEDUSERKEY);
+        prefsEditor.putInt(UAS.LOGGEDUSERKEY, usersNum);
 
         prefsEditor.commit();
     }
@@ -122,15 +150,15 @@ public class InitialActivity extends AppCompatActivity implements Loadingable {
         return isAvailable;
     }
 
-    private void loadSPData() {
-        int specNum = myPref.getInt(UAS.SPECIALTIESNUMBERKEY, 0);
+    private void loadSPData(int userNum) {
+        int specNum = myPref.getInt("User" + userNum + UAS.SPECIALTIESNUMBERKEY, 0);
         UAS.SPECIALTIES = new ArrayList<Specialty>();
         UAS.SPECIALTIESINFO = new ArrayList<SpecialtyInfo>();
 
         Gson gson = new Gson();
 
         //loading user
-        String jsonUser = myPref.getString(UAS.USERKEY, "");
+        String jsonUser = myPref.getString("User" + userNum + UAS.USERKEY, "");
         UAS.USER = gson.fromJson(jsonUser, User.class);
 
         //loading prev info
@@ -138,8 +166,8 @@ public class InitialActivity extends AppCompatActivity implements Loadingable {
             Specialty spec;
             SpecialtyInfo specInfo;
 
-            String jsonSpec = myPref.getString("" + UAS.SPECIALTIESKEY + i, "");
-            String jsonSpecInfo = myPref.getString("" + UAS.SPECIALTIESINFOKEY + i, "");
+            String jsonSpec = myPref.getString("User" + userNum + UAS.SPECIALTIESKEY + i, "");
+            String jsonSpecInfo = myPref.getString("User" + userNum + UAS.SPECIALTIESINFOKEY + i, "");
 
             spec = gson.fromJson(jsonSpec, Specialty.class);
             specInfo = gson.fromJson(jsonSpecInfo, SpecialtyInfo.class);
@@ -149,7 +177,7 @@ public class InitialActivity extends AppCompatActivity implements Loadingable {
         }
 
         //restoring language
-        Locale locale = new Locale(myPref.getString(UAS.LANGUAGEKEY, "es"));
+        Locale locale = new Locale(myPref.getString("User" + userNum + UAS.LANGUAGEKEY, "es"));
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
@@ -162,11 +190,17 @@ public class InitialActivity extends AppCompatActivity implements Loadingable {
         super.onCreate(savedInstanceState);
 
         myPref = getSharedPreferences(UAS.MYSHAREDPREFERENCENAME, MODE_PRIVATE);
-        if (myPref.contains(UAS.SPECIALTIESNUMBERKEY)) {
-            loadSPData();
-            Intent intent = new Intent(InitialActivity.this, SpecialtiesActivity.class);
-            startActivity(intent);
-            finish();
+
+        if (myPref.contains(UAS.LOGGEDUSERSNUMBERKEY)) {
+            boolean isLogged = myPref.getBoolean(UAS.ISLOGGEDKEY, false);
+
+            if (isLogged) {
+                int userLogged = myPref.getInt(UAS.LOGGEDUSERKEY, 1);
+                loadSPData(userLogged);
+                Intent intent = new Intent(InitialActivity.this, SpecialtiesActivity.class);
+                startActivity(intent);
+                finish();
+            }
         }
 
         //establecer español por default
@@ -187,6 +221,7 @@ public class InitialActivity extends AppCompatActivity implements Loadingable {
         UAS.screenHeight = size.y;
 
         loginButton = (Button) findViewById(R.id.loginButton);
+        usersButton = (Button) findViewById(R.id.users_button);
         visiblePassButton = (ImageView) findViewById(R.id.ini_button_pass_visible);
         deleteUserButton = (ImageView) findViewById(R.id.ini_button_delete_username);
         langSpinner = (Spinner) findViewById(R.id.languageSpinner);
@@ -194,6 +229,11 @@ public class InitialActivity extends AppCompatActivity implements Loadingable {
         passText = (EditText) findViewById(R.id.userPassLogin);
         logo = (ImageView) findViewById(R.id.logo_inicial);
         bgLinear = (LinearLayout) findViewById(R.id.activity_initial_linear);
+
+        ArrayList<String> listLoggedUsers = UAS.getLoggedUsers(myPref);
+
+        usersDialog = new UsersDialog(this,myPref);
+        usersDialog.updateLayout(listLoggedUsers);
 
         langSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -245,6 +285,14 @@ public class InitialActivity extends AppCompatActivity implements Loadingable {
             }
         });
 
+        usersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                usersDialog.show();
+                //You can dialog.dismiss() to close the dialog.
+            }
+        });
+
         deleteUserButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -283,5 +331,27 @@ public class InitialActivity extends AppCompatActivity implements Loadingable {
         Intent refresh = new Intent(this, InitialActivity.class);
         startActivity(refresh);
         finish();
+    }
+
+    public class UsersDialog extends Dialog {
+
+        Context context;
+        SharedPreferences sp;
+
+        public UsersDialog(Context c, SharedPreferences sp) {
+            super(c);
+            context = c;
+            this.sp = sp;
+            setTitle(c.getResources().getString(R.string.uas_ini_dialog_titulo));
+            setContentView(R.layout.ini_users_layout);
+        }
+
+        public void updateLayout(ArrayList<String> lines) {
+            LinearLayout linear = (LinearLayout) findViewById(R.id.ini_users_layout_linear);
+            for (String s : lines) {
+                IniUsersComponent newUser = new IniUsersComponent(context,s,this,sp);
+                linear.addView(newUser);
+            }
+        }
     }
 }

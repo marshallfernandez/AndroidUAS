@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -28,6 +29,8 @@ import com.puntobat.uas.helpers.SpecialtyInfo;
 import com.puntobat.uas.model.Specialty;
 import com.puntobat.uas.request.LoginRequest;
 
+import java.util.Locale;
+
 /**
  * Created by edu24 on 6/05/2016.
  */
@@ -42,6 +45,15 @@ public class SpecialtiesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        String languageToLoad = UAS.appLanguage;
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+
         setContentView(R.layout.activity_specialties);
 
         myPrefs = getSharedPreferences(UAS.MYSHAREDPREFERENCENAME, MODE_PRIVATE);
@@ -91,7 +103,7 @@ public class SpecialtiesActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                new HttpMySpecialtiesTask(swipeLayout, listaxurreta,myPrefs).execute();
+                new HttpMySpecialtiesTask(swipeLayout, listaxurreta, myPrefs).execute();
             }
         }, 3000);
     }
@@ -117,7 +129,7 @@ public class SpecialtiesActivity extends AppCompatActivity {
                                 Intent intent = new Intent(SpecialtiesActivity.this, InitialActivity.class);
                                 startActivity(intent);
                                 SharedPreferences.Editor editor = myPrefs.edit();
-                                editor.clear();
+                                editor.putBoolean(UAS.ISLOGGEDKEY, false);
                                 editor.commit();
                                 finish();
                             }
@@ -165,24 +177,24 @@ public class SpecialtiesActivity extends AppCompatActivity {
 
             //saving info
             for (int i = 1; i <= UAS.SPECIALTIES.size(); i++) {
-                Specialty spec = UAS.SPECIALTIES.get(i-1);
-                SpecialtyInfo specInfo = UAS.SPECIALTIESINFO.get(i-1);
+                Specialty spec = UAS.SPECIALTIES.get(i - 1);
+                SpecialtyInfo specInfo = UAS.SPECIALTIESINFO.get(i - 1);
                 String jsonSpec = gson.toJson(spec);
                 String jsonSpecInfo = gson.toJson(specInfo);
 
-                prefsEditor.remove("" + UAS.SPECIALTIESKEY + i);
-                prefsEditor.remove("" + UAS.SPECIALTIESINFOKEY + i);
-                prefsEditor.putString("" + UAS.SPECIALTIESKEY + i, jsonSpec);
-                prefsEditor.putString("" + UAS.SPECIALTIESINFOKEY + i, jsonSpecInfo);
+                prefsEditor.remove("User" + sp.getInt(UAS.LOGGEDUSERKEY, 1) + UAS.SPECIALTIESKEY + i);
+                prefsEditor.remove("User" + sp.getInt(UAS.LOGGEDUSERKEY, 1) + UAS.SPECIALTIESINFOKEY + i);
+                prefsEditor.putString("User" + sp.getInt(UAS.LOGGEDUSERKEY, 1) + UAS.SPECIALTIESKEY + i, jsonSpec);
+                prefsEditor.putString("User" + sp.getInt(UAS.LOGGEDUSERKEY, 1) + UAS.SPECIALTIESINFOKEY + i, jsonSpecInfo);
             }
 
             //saving user
             String jsonUser = gson.toJson(UAS.USER);
-            prefsEditor.remove(UAS.USERKEY);
-            prefsEditor.putString(UAS.USERKEY,jsonUser);
+            prefsEditor.remove("User" + sp.getInt(UAS.LOGGEDUSERKEY, 1) + UAS.USERKEY);
+            prefsEditor.putString("User" + sp.getInt(UAS.LOGGEDUSERKEY, 1) + UAS.USERKEY, jsonUser);
 
-            prefsEditor.remove(UAS.SPECIALTIESNUMBERKEY);
-            prefsEditor.putInt(UAS.SPECIALTIESNUMBERKEY,UAS.SPECIALTIES.size());
+            prefsEditor.remove("User" + sp.getInt(UAS.LOGGEDUSERKEY, 1) + UAS.SPECIALTIESNUMBERKEY);
+            prefsEditor.putInt("User" + sp.getInt(UAS.LOGGEDUSERKEY, 1) + UAS.SPECIALTIESNUMBERKEY, UAS.SPECIALTIES.size());
 
             prefsEditor.commit();
         }
@@ -195,8 +207,8 @@ public class SpecialtiesActivity extends AppCompatActivity {
 
                 //updating TOKEN
                 LoginRequest loginRequest = new LoginRequest();
-                loginRequest.password = sp.getString(UAS.PASSWORDKEY,"");
-                loginRequest.user = sp.getString(UAS.USERNAMEKEY,"");
+                loginRequest.password = sp.getString("User" + sp.getInt(UAS.LOGGEDUSERKEY, 1) + UAS.PASSWORDKEY, "");
+                loginRequest.user = sp.getString("User" + sp.getInt(UAS.LOGGEDUSERKEY, 1) + UAS.USERNAMEKEY, "");
                 getController.updateToken(loginRequest);
 
                 UAS.SPECIALTIES = getController.getSpecialties();

@@ -18,7 +18,8 @@ import java.util.ArrayList;
  * Created by edu24 on 1/06/2016.
  */
 public class CoursesFragment extends Fragment {
-    public LinearLayout auxiliar;
+
+    private LinearLayout auxiliar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

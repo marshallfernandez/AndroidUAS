@@ -7,24 +7,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.puntobat.uas.R;
-import com.puntobat.uas.model.EducationalObjective;
+import com.puntobat.uas.model.StudentResult;
 
 /**
- * Created by edu24 on 31/05/2016.
+ * Created by edu24 on 1/06/2016.
  */
-public class EducObjComponent extends LinearLayout {
+public class StudResultComponent extends LinearLayout {
 
     public LinearLayout linearLayout;
     public Context _context;
-    public EducationalObjective auxiliar;
+    public StudentResult auxiliar;
     public TextView educObjName;
 
-    View linearEducObj;
+    View linear;
 
-    public EducObjComponent(Context context, EducationalObjective educationalObjective) {
+    public StudResultComponent(Context context, StudentResult studentResult) {
         super(context);
         this._context = context;
-        this.auxiliar = educationalObjective;
+        this.auxiliar = studentResult;
 
         inflate();
     }
@@ -34,14 +34,14 @@ public class EducObjComponent extends LinearLayout {
         LayoutInflater layoutInflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         linearLayout = new LinearLayout(_context);
-        layoutInflater.inflate(R.layout.component_educ_obj, this);
+        layoutInflater.inflate(R.layout.component_student_result, this);
 
-        this.educObjName = (TextView) findViewById(R.id.component_educ_obj_name);
-        this.educObjName.setText(getResources().getString(R.string.uas_educ_obj_title) + " " + auxiliar.getId());
+        this.educObjName = (TextView) findViewById(R.id.component_stud_result_name);
+        this.educObjName.setText(getResources().getString(R.string.uas_aspectos_titulo_resultado) + " " + auxiliar.getIdentificator());
 
-        linearEducObj = findViewById(R.id.component_educ_obj_linear);
+        linear = findViewById(R.id.component_stud_result_linear);
 
-        this.linearEducObj.setOnClickListener(new OnClickListener() {
+        this.linear.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
 

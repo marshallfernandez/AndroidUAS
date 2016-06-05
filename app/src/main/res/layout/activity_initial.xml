@@ -42,8 +42,25 @@
             </LinearLayout>
 
             <Spinner android:id="@+id/languageSpinner"
-                style="@style/SpinnerLangLogin"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:spinnerMode="dialog"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
                 android:entries="@array/uas_ini_lenguajes" />
+
+            <Button android:id="@+id/users_button"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="@string/uas_ini_usuarios"
+                android:textColor="@color/black"
+                android:typeface="monospace"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:background="@drawable/bg_button_login_selector"
+                android:textAllCaps="false"
+                android:padding="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_toLeftOf="@id/languageSpinner"/>
 
         </RelativeLayout>
 
@@ -178,9 +195,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-
                     <Button android:id="@+id/loginButton"
-                        android:layout_width="wrap_content"
+                        android:layout_width="230dp"
                         android:layout_height="wrap_content"
                         android:text="@string/uas_ini_entrar"
                         android:textColor="@color/black"
@@ -188,7 +204,7 @@
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
                         android:background="@drawable/bg_button_login_selector"
                         android:textAllCaps="false"
-                        android:padding="@dimen/general_bg_padding"
+                        android:padding="10dp"
                         android:layout_centerInParent="true"/>
 
                 </RelativeLayout>

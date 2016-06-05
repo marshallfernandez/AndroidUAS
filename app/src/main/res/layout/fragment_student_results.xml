@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout android:id="@+id/fragment_improvement_plans_linear"
+        <LinearLayout android:id="@+id/fragment_student_results_linear"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"

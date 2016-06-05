@@ -27,6 +27,10 @@
 	<string name="uas_nav_resEval">Resultados de Evaluaciones</string>
 	<string name="uas_nav_salir">Cerrar Sesión</string>
 	<string name="uas_ini_entrar">Iniciar Sesión</string>
+	<string name="uas_ini_usuarios">Usuarios</string>
+	<string name="uas_ini_dialog_titulo">Usuarios registrados</string>
+	<string name="uas_ini_dialog_titulo_confirm_pass">Confirmar Contraseña</string>
+	<string name="uas_ini_dialog_confirm_pass">Confirmar Contraseña</string>
 	<string name="uas_ini_hint_usuario">Usuario</string>
 	<string name="uas_ini_hint_pass">Contraseña</string>
 	<string name="uas_ini_spinner_idioma">Idioma</string>
@@ -36,6 +40,8 @@
 	<string name="uas_alert_cerrarSesion_titulo">Cerrar sesión</string>
 	<string name="uas_alert_salirUAS_titulo">Cerrar UAS</string>
 	<string name="uas_alert_salir_pregunta">¿Desea salir?</string>
+	<string name="uas_ini_alert_borrar_info">Borrar Información</string>
+	<string name="uas_ini_alert_borrar_info_pregunta">¿Desea borrar su información?</string>
 	<string name="uas_alert_si">Si</string>
 	<string name="uas_alert_no">No</string>
 	<string name="uas_ini_toast_camposNoVacio">Los campos no pueden estar vacíos</string>
@@ -56,6 +62,13 @@
 	<string name="uas_courses_ver_horarios">Ver Horarios</string>
 	<string name="uas_courses_codigo">Código:</string>
 	<string name="uas_courses_nivel">Nivel:</string>
+	<string name="uas_improv_plan_usuario">Usuario:</string>
+	<string name="uas_improv_plan_creador">Creador:</string>
+	<string name="uas_improv_plan_fechai">Fecha Inicio:</string>
+	<string name="uas_improv_plan_fechaf">Fecha Fin:</string>
+	<string name="uas_improv_plan_descripcion">Descripción:</string>
+	<string name="uas_improv_plan_descargar">Descargar</string>
+	<string name="uas_improv_plan_actividades">Ver Actividades</string>
 
 	<string name="uas_error_login">El usuario y/o contraseña son inválidos</string>
 </resources>

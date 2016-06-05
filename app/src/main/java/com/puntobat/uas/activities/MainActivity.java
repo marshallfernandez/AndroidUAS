@@ -22,6 +22,7 @@ import com.puntobat.uas.fragments.CoursesFragment;
 import com.puntobat.uas.fragments.EducationalObjectivesFragment;
 import com.puntobat.uas.fragments.HomeFragment;
 import com.puntobat.uas.fragments.MaintFragment;
+import com.puntobat.uas.fragments.StudentResultsFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -125,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
 
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, new MaintFragment())
+                        .replace(R.id.container, new StudentResultsFragment())
                         .commit();
             }
         });
@@ -200,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
                                 Intent intent = new Intent(MainActivity.this, InitialActivity.class);
                                 startActivity(intent);
                                 SharedPreferences.Editor editor = myPrefs.edit();
-                                editor.clear();
+                                editor.putBoolean(UAS.ISLOGGEDKEY,false);
                                 editor.commit();
                                 finish();
                             }
