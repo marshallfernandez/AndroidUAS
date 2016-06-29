@@ -22,6 +22,7 @@ import com.puntobat.uas.fragments.CoursesFragment;
 import com.puntobat.uas.fragments.EducationalObjectivesFragment;
 import com.puntobat.uas.fragments.HomeFragment;
 import com.puntobat.uas.fragments.MaintFragment;
+import com.puntobat.uas.fragments.ReportFragment;
 import com.puntobat.uas.fragments.StudentResultsFragment;
 
 public class MainActivity extends AppCompatActivity {
@@ -59,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
         abTitle = (TextView) findViewById(R.id.uas_action_bar_title);
         abTitle.setText(R.string.uas_ab_inicio);
 
+        UAS.ABTITLE = abTitle;
+
         nameProfile = (TextView) findViewById(R.id.name_profile);
         roleProfile = (TextView) findViewById(R.id.role_profile);
         facultyProfile = (TextView) findViewById(R.id.faculty_profile);
@@ -74,9 +77,31 @@ public class MainActivity extends AppCompatActivity {
         resultEvalLinear = (LinearLayout) findViewById(R.id.result_eval_linear);
         logoutLinear = (LinearLayout) findViewById(R.id.logout_linear);
 
-        nameProfile.setText(UAS.USER.getTeacher().getName() + " " + UAS.USER.getTeacher().getLastName());
-        roleProfile.setText(UAS.USER.getTeacher().getCharge());
-        facultyProfile.setText(UAS.getSpecialtyById(UAS.USER.getTeacher().getIdSpecialty()).getName());
+        UAS.IDCONTAINER = R.id.container;
+        UAS.FRAGMENTMNGR = getSupportFragmentManager();
+
+        String name;
+        String role;
+        String faculty;
+
+        if (UAS.USER.getTeacher() != null) {
+            name = UAS.USER.getTeacher().getName() + " " + UAS.USER.getTeacher().getLastName();
+            role = UAS.USER.getTeacher().getCharge();
+            faculty = UAS.getSpecialtyById(UAS.USER.getTeacher().getIdSpecialty()).getName();
+        } else if(UAS.USER.getAccreditor() != null){
+            name = UAS.USER.getAccreditor().getName() + " " + UAS.USER.getAccreditor().getLastName();
+            role = "Acreditador";
+            faculty = UAS.getSpecialtyById(UAS.USER.getAccreditor().getIdSpecialty()).getName();
+        }
+        else{
+            name = "Admin";
+            role = "Administrador";
+            faculty = "";
+        }
+
+        nameProfile.setText(name);
+        roleProfile.setText(role);
+        facultyProfile.setText(faculty);
 
         navNumSpec.setText(String.valueOf(UAS.SPECIALTIES.size()));
 
@@ -87,10 +112,12 @@ public class MainActivity extends AppCompatActivity {
                 homeLinear.setSelected(true);
                 abTitle.setText(R.string.uas_ab_inicio);
 
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, new HomeFragment())
-                        .commit();
+                if (UAS.FRAGMENTMNGR.getBackStackEntryCount() > 0)
+                    UAS.FRAGMENTMNGR.popBackStack();
+
+                UAS.FRAGMENTMNGR.beginTransaction()
+                        .replace(UAS.IDCONTAINER, new HomeFragment())
+                        .commitAllowingStateLoss();
             }
         });
 
@@ -110,10 +137,12 @@ public class MainActivity extends AppCompatActivity {
                 objectivesLinear.setSelected(true);
                 abTitle.setText(R.string.uas_nav_objEd);
 
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, new EducationalObjectivesFragment())
-                        .commit();
+                if (UAS.FRAGMENTMNGR.getBackStackEntryCount() > 0)
+                    UAS.FRAGMENTMNGR.popBackStack();
+
+                UAS.FRAGMENTMNGR.beginTransaction()
+                        .replace(UAS.IDCONTAINER, new EducationalObjectivesFragment())
+                        .commitAllowingStateLoss();
             }
         });
 
@@ -124,10 +153,12 @@ public class MainActivity extends AppCompatActivity {
                 resultStudLinear.setSelected(true);
                 abTitle.setText(R.string.uas_nav_resEst);
 
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, new StudentResultsFragment())
-                        .commit();
+                if (UAS.FRAGMENTMNGR.getBackStackEntryCount() > 0)
+                    UAS.FRAGMENTMNGR.popBackStack();
+
+                UAS.FRAGMENTMNGR.beginTransaction()
+                        .replace(UAS.IDCONTAINER, new StudentResultsFragment())
+                        .commitAllowingStateLoss();
             }
         });
 
@@ -138,10 +169,12 @@ public class MainActivity extends AppCompatActivity {
                 aspectsLinear.setSelected(true);
                 abTitle.setText(R.string.uas_nav_aspectos);
 
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, new AspectsFragment())
-                        .commit();
+                if (UAS.FRAGMENTMNGR.getBackStackEntryCount() > 0)
+                    UAS.FRAGMENTMNGR.popBackStack();
+
+                UAS.FRAGMENTMNGR.beginTransaction()
+                        .replace(UAS.IDCONTAINER, new AspectsFragment())
+                        .commitAllowingStateLoss();
             }
         });
 
@@ -152,10 +185,12 @@ public class MainActivity extends AppCompatActivity {
                 coursesLinear.setSelected(true);
                 abTitle.setText(R.string.uas_nav_cursos);
 
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, new CoursesFragment())
-                        .commit();
+                if (UAS.FRAGMENTMNGR.getBackStackEntryCount() > 0)
+                    UAS.FRAGMENTMNGR.popBackStack();
+
+                UAS.FRAGMENTMNGR.beginTransaction()
+                        .replace(UAS.IDCONTAINER, new CoursesFragment())
+                        .commitAllowingStateLoss();
             }
         });
 
@@ -166,10 +201,12 @@ public class MainActivity extends AppCompatActivity {
                 improveLinear.setSelected(true);
                 abTitle.setText(R.string.uas_nav_mejora);
 
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, new ContinuousImprovementFragment())
-                        .commit();
+                if (UAS.FRAGMENTMNGR.getBackStackEntryCount() > 0)
+                    UAS.FRAGMENTMNGR.popBackStack();
+
+                UAS.FRAGMENTMNGR.beginTransaction()
+                        .replace(UAS.IDCONTAINER, new ContinuousImprovementFragment())
+                        .commitAllowingStateLoss();
             }
         });
 
@@ -180,10 +217,12 @@ public class MainActivity extends AppCompatActivity {
                 resultEvalLinear.setSelected(true);
                 abTitle.setText(R.string.uas_nav_resEval);
 
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.container, new MaintFragment())
-                        .commit();
+                if (UAS.FRAGMENTMNGR.getBackStackEntryCount() > 0)
+                    UAS.FRAGMENTMNGR.popBackStack();
+
+                UAS.FRAGMENTMNGR.beginTransaction()
+                        .replace(UAS.IDCONTAINER, new ReportFragment())
+                        .commitAllowingStateLoss();
             }
         });
 
@@ -201,26 +240,32 @@ public class MainActivity extends AppCompatActivity {
                                 Intent intent = new Intent(MainActivity.this, InitialActivity.class);
                                 startActivity(intent);
                                 SharedPreferences.Editor editor = myPrefs.edit();
-                                editor.putBoolean(UAS.ISLOGGEDKEY,false);
+                                editor.putBoolean(UAS.ISLOGGEDKEY, false);
                                 editor.commit();
                                 finish();
                             }
 
                         })
-                        .setNegativeButton(R.string.uas_alert_no, null)
+                        .setNegativeButton(R.string.uas_alert_no, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (UAS.FRAGMENTMNGR.getBackStackEntryCount() > 0)
+                                    UAS.FRAGMENTMNGR.popBackStack();
+                            }
+
+                        })
                         .show();
             }
         });
 
         //fragment seleccionado inicialmente
         homeLinear.setSelected(true);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, new HomeFragment())
-                .commit();
+        UAS.FRAGMENTMNGR.beginTransaction()
+                .replace(UAS.IDCONTAINER, new HomeFragment())
+                .commitAllowingStateLoss();
     }
 
-    private void deselectMenu(){
+    private void deselectMenu() {
         homeLinear.setSelected(false);
         objectivesLinear.setSelected(false);
         resultStudLinear.setSelected(false);
@@ -244,18 +289,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        new AlertDialog.Builder(this)
-                .setIcon(R.mipmap.ic_launcher)
-                .setTitle(R.string.uas_alert_salirUAS_titulo)
-                .setMessage(R.string.uas_alert_salir_pregunta)
-                .setPositiveButton(R.string.uas_alert_si, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-
-                })
-                .setNegativeButton(R.string.uas_alert_no, null)
-                .show();
+        if (UAS.FRAGMENTMNGR.getBackStackEntryCount() > 0) {
+            UAS.FRAGMENTMNGR.popBackStack();
+        } else {
+            Intent intent = new Intent(MainActivity.this, SpecialtiesActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }

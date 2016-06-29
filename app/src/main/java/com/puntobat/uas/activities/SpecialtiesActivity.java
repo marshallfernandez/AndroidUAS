@@ -71,7 +71,13 @@ public class SpecialtiesActivity extends AppCompatActivity {
             @Override
             public void onRefresh() {
                 if (isNetworkAvailable()) {
-                    refreshContent();
+                    if (!UAS.ISREFRESHING) {
+                        UAS.ISREFRESHING = true;
+                        refreshContent();
+                    } else {
+                        Toast.makeText(SpecialtiesActivity.this, R.string.uas_ya_actualizando, Toast.LENGTH_SHORT).show();
+                        swipeLayout.setRefreshing(false);
+                    }
                 } else {
                     Toast.makeText(SpecialtiesActivity.this, R.string.uas_no_internet, Toast.LENGTH_SHORT).show();
                     swipeLayout.setRefreshing(false);
@@ -119,24 +125,28 @@ public class SpecialtiesActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                new AlertDialog.Builder(this)
-                        .setIcon(R.mipmap.ic_launcher)
-                        .setTitle(R.string.uas_alert_cerrarSesion_titulo)
-                        .setMessage(R.string.uas_alert_salir_pregunta)
-                        .setPositiveButton(R.string.uas_alert_si, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent intent = new Intent(SpecialtiesActivity.this, InitialActivity.class);
-                                startActivity(intent);
-                                SharedPreferences.Editor editor = myPrefs.edit();
-                                editor.putBoolean(UAS.ISLOGGEDKEY, false);
-                                editor.commit();
-                                finish();
-                            }
+                if (!UAS.ISREFRESHING) {
+                    new AlertDialog.Builder(this)
+                            .setIcon(R.mipmap.ic_launcher)
+                            .setTitle(R.string.uas_alert_cerrarSesion_titulo)
+                            .setMessage(R.string.uas_alert_salir_pregunta)
+                            .setPositiveButton(R.string.uas_alert_si, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent intent = new Intent(SpecialtiesActivity.this, InitialActivity.class);
+                                    startActivity(intent);
+                                    SharedPreferences.Editor editor = myPrefs.edit();
+                                    editor.putBoolean(UAS.ISLOGGEDKEY, false);
+                                    editor.commit();
+                                    finish();
+                                }
 
-                        })
-                        .setNegativeButton(R.string.uas_alert_no, null)
-                        .show();
+                            })
+                            .setNegativeButton(R.string.uas_alert_no, null)
+                            .show();
+                } else {
+                    Toast.makeText(SpecialtiesActivity.this, R.string.uas_ya_actualizando, Toast.LENGTH_SHORT).show();
+                }
                 return true;
         }
         return super.onOptionsItemSelected(item);
@@ -144,19 +154,23 @@ public class SpecialtiesActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        new AlertDialog.Builder(this)
-                .setIcon(R.mipmap.ic_launcher)
-                .setTitle(R.string.uas_alert_salirUAS_titulo)
-                .setMessage(R.string.uas_alert_salir_pregunta)
-                .setPositiveButton(R.string.uas_alert_si, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
+        if (!UAS.ISREFRESHING) {
+            new AlertDialog.Builder(this)
+                    .setIcon(R.mipmap.ic_launcher)
+                    .setTitle(R.string.uas_alert_salirUAS_titulo)
+                    .setMessage(R.string.uas_alert_salir_pregunta)
+                    .setPositiveButton(R.string.uas_alert_si, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
 
-                })
-                .setNegativeButton(R.string.uas_alert_no, null)
-                .show();
+                    })
+                    .setNegativeButton(R.string.uas_alert_no, null)
+                    .show();
+        } else {
+            Toast.makeText(SpecialtiesActivity.this, R.string.uas_ya_actualizando, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private class HttpMySpecialtiesTask extends AsyncTask<Void, Integer, Void> {
@@ -226,6 +240,7 @@ public class SpecialtiesActivity extends AppCompatActivity {
             SpecialtyAdapter specialtyAdapter = new SpecialtyAdapter(SpecialtiesActivity.this, UAS.SPECIALTIES);
             listaxurreta.setAdapter(specialtyAdapter);
             Toast.makeText(SpecialtiesActivity.this, R.string.uas_info_actualizada, Toast.LENGTH_SHORT).show();
+            UAS.ISREFRESHING = false;
         }
 
     }

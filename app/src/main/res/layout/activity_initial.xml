@@ -17,29 +17,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.35"/>
+                android:padding="85dp">
 
                 <ImageView android:id="@+id/logo_inicial"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/uas_logo_nombre"
                     android:layout_centerInParent="true"/>
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="0.35"/>
-
-            </LinearLayout>
+            </RelativeLayout>
 
             <Spinner android:id="@+id/languageSpinner"
                 android:layout_width="200dp"
@@ -54,13 +43,23 @@
                 android:layout_height="wrap_content"
                 android:text="@string/uas_ini_usuarios"
                 android:textColor="@color/black"
-                android:typeface="monospace"
+                android:layout_alignParentRight="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:background="@drawable/bg_button_login_selector"
                 android:textAllCaps="false"
                 android:padding="10dp"
                 android:layout_marginRight="5dp"
                 android:layout_toLeftOf="@id/languageSpinner"/>
+
+            <ImageButton android:id="@+id/ini_alert_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_myalert"
+                android:textColor="@color/black"
+                android:background="@drawable/bg_button_login_selector"
+                android:padding="5dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"/>
 
         </RelativeLayout>
 
@@ -100,12 +99,13 @@
                         android:layout_height="match_parent"
                         android:layout_weight="0.8"
                         android:textColor="@color/black"
-                        android:typeface="monospace"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                        android:maxLength="8"
+                        
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:maxLength="12"
                         android:inputType="textPersonName"
                         android:hint="@string/uas_ini_hint_usuario"
-                        android:textColorHint="@color/uas_plomo_oscuro"/>
+                        android:textColorHint="@color/uas_plomo_oscuro"
+                        android:textCursorDrawable="@drawable/color_cursor"/>
 
                     <RelativeLayout
                         android:layout_width="0dp"
@@ -154,12 +154,13 @@
                         android:layout_height="match_parent"
                         android:layout_weight="0.8"
                         android:textColor="@color/black"
-                        android:typeface="monospace"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:maxLength="12"
                         android:inputType="textPassword"
                         android:hint="@string/uas_ini_hint_pass"
-                        android:textColorHint="@color/uas_plomo_oscuro"/>
+                        android:textColorHint="@color/uas_plomo_oscuro"
+                        android:textCursorDrawable="@drawable/color_cursor"/>
 
                     <RelativeLayout
                         android:layout_width="0dp"
@@ -200,8 +201,8 @@
                         android:layout_height="wrap_content"
                         android:text="@string/uas_ini_entrar"
                         android:textColor="@color/black"
-                        android:typeface="monospace"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:background="@drawable/bg_button_login_selector"
                         android:textAllCaps="false"
                         android:padding="10dp"

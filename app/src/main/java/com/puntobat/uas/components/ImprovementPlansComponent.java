@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.puntobat.uas.R;
+import com.puntobat.uas.constans.UAS;
 import com.puntobat.uas.model.ImprovementPlan;
 
 /**
@@ -18,6 +19,14 @@ public class ImprovementPlansComponent extends LinearLayout {
     public LinearLayout linearLayout;
     public Context _context;
     public ImprovementPlan auxiliar;
+
+    private TextView creator;
+    private TextView type;
+    private TextView impDate;
+    private TextView analysis;
+    private TextView description;
+
+    private Button download;
 
     public ImprovementPlansComponent(Context context, ImprovementPlan improvementPlan){
         super(context);
@@ -34,20 +43,19 @@ public class ImprovementPlansComponent extends LinearLayout {
         linearLayout = new LinearLayout(_context);
         layoutInflater.inflate(R.layout.item_improv_plan, this);
 
-        TextView user = (TextView) findViewById(R.id.item_improv_plan_usuario);
-        TextView creator = (TextView) findViewById(R.id.item_improv_plan_creador);
-        TextView startDate = (TextView) findViewById(R.id.item_improv_plan_fechai);
-        TextView endDate = (TextView) findViewById(R.id.item_improv_plan_fechaf);
+        creator = (TextView) findViewById(R.id.item_improv_plan_creador);
+        type = (TextView) findViewById(R.id.item_improv_plan_tipo);
+        impDate = (TextView) findViewById(R.id.item_improv_plan_fechaimp);
+        analysis = (TextView) findViewById(R.id.item_improv_plan_analisis);
+        description = (TextView) findViewById(R.id.item_improv_plan_descripcion);
 
-        Button viewActivities = (Button) findViewById(R.id.item_improv_plan_boton_actividades);
-        Button download = (Button) findViewById(R.id.item_improv_plan_boton_descargar);
+        download = (Button) findViewById(R.id.item_improv_plan_boton_descargar);
 
-        viewActivities.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //view schedules
-            }
-        });
+        creator.setText(auxiliar.getTeacher().getName()+" "+auxiliar.getTeacher().getLastName());
+        type.setText(auxiliar.getImprovementPlanType().getCode());
+        impDate.setText(UAS.getDateFormat(auxiliar.getImplementationDate()));
+        analysis.setText(auxiliar.getCauseAnalisis());
+        description.setText(auxiliar.getDescription());
 
         download.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -10,6 +10,7 @@ public class Criterio {
     private int id;
     private int idAspect;
     private String name;
+    private int status;
     private Date created_at;
     private Date updated_at;
     private Date deleted_at;
@@ -38,6 +39,14 @@ public class Criterio {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public Date getCreated_at() {

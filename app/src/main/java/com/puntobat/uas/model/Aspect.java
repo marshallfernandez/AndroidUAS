@@ -11,6 +11,7 @@ public class Aspect {
     private int id;
     private int idStudentResult;
     private String name;
+    private int status;
     private ArrayList<Criterio> listCriterios;
     private Date created_at;
     private Date updated_at;
@@ -40,6 +41,14 @@ public class Aspect {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public ArrayList<Criterio> getListCriterios() {

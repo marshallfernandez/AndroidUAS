@@ -58,4 +58,12 @@
     <string name="uas_ini_dialog_titulo">Os Utilizadores Registados</string>
     <string name="uas_ini_dialog_titulo_confirm_pass">Confirmar Senha</string>
     <string name="uas_ini_dialog_confirm_pass">Confirmar Senha</string>
+    <string name="uas_ini_toast_pass_incorrecta">Senha Incorreta</string>
+    <string name="uas_ini_alert_borrar_info">Excluir Informações</string>
+    <string name="uas_ini_alert_borrar_info_pregunta">Você quer apagar a sua informação?</string>
+    <string name="uas_ini_alert_necesita_internet">A primeira vez que você entrar precisa de conexão à Internet</string>
+    <string name="uas_ya_actualizando">Informação está sendo atualizado, por favor espere</string>
+    <string name="uas_ab_deslizar_actualizar">Deslize para baixo para atualizar</string>
+    <string name="uas_principal_nada_registrado">Nada registrado</string>
+    <string name="uas_cursos_nivel_titulo">Nívei</string>
 </resources>

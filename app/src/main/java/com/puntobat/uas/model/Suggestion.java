@@ -8,19 +8,17 @@ import java.util.Date;
 public class Suggestion {
 
     private int id;
-    private int idImprovePlanType;
+    private int idImprovePlan;
     private int idTeacher;
     private int idSpecialty;
     private String date;
     private String title;
     private String description;
     private Teacher teacher;
-    private ImprovementPlanType improvementPlanType;
+    private ImprovementPlan improvementPlan;
     private Date created_at;
     private Date updated_at;
     private Date deleted_at;
-
-    public Suggestion(){}
 
     public int getId() {
         return id;
@@ -30,12 +28,12 @@ public class Suggestion {
         this.id = id;
     }
 
-    public int getIdImprovePlanType() {
-        return idImprovePlanType;
+    public int getIdImprovePlan() {
+        return idImprovePlan;
     }
 
-    public void setIdImprovePlanType(int idImprovePlanType) {
-        this.idImprovePlanType = idImprovePlanType;
+    public void setIdImprovePlan(int idImprovePlan) {
+        this.idImprovePlan = idImprovePlan;
     }
 
     public int getIdTeacher() {
@@ -86,12 +84,12 @@ public class Suggestion {
         this.teacher = teacher;
     }
 
-    public ImprovementPlanType getImprovementPlanType() {
-        return improvementPlanType;
+    public ImprovementPlan getImprovementPlan() {
+        return improvementPlan;
     }
 
-    public void setImprovementPlanType(ImprovementPlanType improvementPlanType) {
-        this.improvementPlanType = improvementPlanType;
+    public void setImprovementPlan(ImprovementPlan improvementPlan) {
+        this.improvementPlan = improvementPlan;
     }
 
     public Date getCreated_at() {

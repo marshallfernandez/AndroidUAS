@@ -21,7 +21,7 @@
             android:inputType="textPassword"
             android:textColor="@color/black"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:typeface="monospace"/>
+            />
 
     </LinearLayout>
 
@@ -34,7 +34,7 @@
             android:layout_height="wrap_content"
             android:text="@string/uas_ini_dialog_confirm_pass"
             android:textColor="@color/black"
-            android:typeface="monospace"
+            
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:background="@drawable/bg_button_login_selector"
             android:textAllCaps="false"

@@ -5,13 +5,37 @@
     android:layout_height="wrap_content"
     android:background="@drawable/bg_components_list_selector"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="@dimen/general_bg_padding">
 
-    <TextView
-        android:id="@+id/component_educ_obj_name"
-        style="@style/GeneralTextViews"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="10dp"
-        android:textColor="@color/black" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/component_educ_obj_name"
+            style="@style/GeneralTextViewsMedium"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <ImageView android:id="@+id/component_educ_obj_status_img"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_estado_activo"/>
+
+        <TextView
+            android:id="@+id/component_educ_obj_description"
+            style="@style/GeneralTextViewsSmall"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_below="@id/component_educ_obj_name"
+            android:textColor="@color/uas_plomo_oscuro"
+            android:layout_marginRight="150dp"
+            android:layout_marginTop="10dp"
+            android:text="jhflshfjlhsjlfheljhfsjkehfkjshefkjhesjfhejhfjedahgwdhjagwjgdajbwgdcbgawgdknawgdcjgakdbgabdbgfwakndgagkwagdwgdbagdkwgadwgadbwgadjwgadhwdajhwdnwahjdkhajkdnhwjkhdwhadjkwmhawhajknhdwajkdnhahfnhadkjawhdwnhjghwgagkakjgdwhjgdwgadhjwadwdfeffef"/>
+
+    </RelativeLayout>
 
 </LinearLayout>

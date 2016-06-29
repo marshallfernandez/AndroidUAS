@@ -11,6 +11,7 @@ public class User {
     private int idProfile;
     private String userName;
     private Teacher teacher;
+    private Accreditor accreditor;
     private Date created_at;
     private Date updated_at;
     private Date deleted_at;
@@ -47,6 +48,14 @@ public class User {
 
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
+    }
+
+    public Accreditor getAccreditor() {
+        return accreditor;
+    }
+
+    public void setAccreditor(Accreditor accreditor) {
+        this.accreditor = accreditor;
     }
 
     public Date getCreated_at() {

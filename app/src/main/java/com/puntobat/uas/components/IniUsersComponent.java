@@ -37,7 +37,9 @@ public class IniUsersComponent extends LinearLayout {
     public String auxiliar;
 
     private InitialActivity.UsersDialog userDialog;
-    private ConfirmPassDialog confirmDialog;
+
+    private Button user;
+    private Button delete;
 
     SharedPreferences myPref;
 
@@ -60,19 +62,15 @@ public class IniUsersComponent extends LinearLayout {
         linearLayout = new LinearLayout(_context);
         layoutInflater.inflate(R.layout.item_ini_users, this);
 
-        Button user = (Button) findViewById(R.id.item_ini_users_name);
-        Button delete = (Button) findViewById(R.id.item_ini_users_delete);
+        this.user = (Button) findViewById(R.id.item_ini_users_name);
+        this.delete = (Button) findViewById(R.id.item_ini_users_delete);
 
-        user.setText(auxiliar);
-
-        confirmDialog = new ConfirmPassDialog(_context, user.getText().toString(), myPref);
-        confirmDialog.updateLayout();
+        this.user.setText(auxiliar);
 
         user.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                userDialog.dismiss();
-                confirmDialog.show();
+                new ConfirmPassDialog(_context, user.getText().toString(), myPref, userDialog).show();
             }
         });
 
@@ -89,7 +87,8 @@ public class IniUsersComponent extends LinearLayout {
                                 UAS.deleteUserInfo(myPref, UAS.getUserIndex(myPref, auxiliar));
                                 userDialog.dismiss();
                                 Intent intent = new Intent(_context, InitialActivity.class);
-                                ((Activity)_context).startActivity(intent);
+                                ((Activity) _context).startActivity(intent);
+                                ((Activity) _context).finish();
                             }
 
                         })
@@ -105,14 +104,42 @@ public class IniUsersComponent extends LinearLayout {
         Context context;
         String userName;
         SharedPreferences sp;
+        InitialActivity.UsersDialog uDialog;
+        Button confirmButton;
+        EditText editAux;
 
-        public ConfirmPassDialog(Context c, String userName, SharedPreferences sp) {
+        public ConfirmPassDialog(Context c, String name, SharedPreferences newSp, InitialActivity.UsersDialog uDialog) {
             super(c);
             this.context = c;
-            this.userName = userName;
-            this.sp = sp;
+            this.userName = name;
+            this.sp = newSp;
+            this.uDialog = uDialog;
             setTitle(c.getResources().getString(R.string.uas_ini_dialog_titulo_confirm_pass));
             setContentView(R.layout.ini_dialog_confirm_pass_layout);
+
+            confirmInflate();
+        }
+
+        public void confirmInflate() {
+
+            confirmButton = (Button) findViewById(R.id.ini_dialog_confirm_pass_boton);
+            editAux = (EditText) findViewById(R.id.ini_dialog_confirm_pass_text);
+
+            confirmButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int userIndex = UAS.getUserIndex(sp, userName);
+                    String passReal = editAux.getText().toString();
+                    String passAux = sp.getString("User" + userIndex + UAS.PASSWORDKEY, "");
+                    if (passReal.compareTo(passAux) == 0)
+                        dialogLoadSPData(userIndex);
+                    else {
+                        Toast.makeText(_context, getResources().getString(R.string.uas_ini_toast_pass_incorrecta), Toast.LENGTH_SHORT).show();
+                        uDialog.dismiss();
+                        dismiss();
+                    }
+                }
+            });
         }
 
         private void dialogLoadSPData(int userNum) {
@@ -162,17 +189,5 @@ public class IniUsersComponent extends LinearLayout {
             this.dismiss();
         }
 
-        public void updateLayout() {
-            EditText passText = (EditText) findViewById(R.id.ini_dialog_confirm_pass_text);
-            Button confirmar = (Button) findViewById(R.id.ini_dialog_confirm_pass_boton);
-
-            confirmar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int userIndex = UAS.getUserIndex(sp, userName);
-                    dialogLoadSPData(userIndex);
-                }
-            });
-        }
     }
 }

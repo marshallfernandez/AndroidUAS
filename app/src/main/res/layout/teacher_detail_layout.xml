@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/uas_plomo"
+    android:padding="@dimen/general_bg_padding">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:padding="@dimen/general_bg_padding">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/usuario_img" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/general_bg_padding">
+
+                    <TextView
+                        style="@style/GeneralTextViewsMedium"
+                        android:text="Código:"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView android:id="@+id/teacher_detail_codigo"
+                        style="@style/GeneralTextViewsMedium"
+                        android:text="awdkjawkjdhbawjkbdhjw"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="@dimen/general_bg_padding"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/general_bg_padding">
+
+                    <TextView
+                        style="@style/GeneralTextViewsMedium"
+                        android:text="Nombre:"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView android:id="@+id/teacher_detail_nombre"
+                        style="@style/GeneralTextViewsMedium"
+                        android:text="awdkjawkjdhbawjkbdhjw"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="@dimen/general_bg_padding"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/general_bg_padding">
+
+                    <TextView
+                        style="@style/GeneralTextViewsMedium"
+                        android:text="Correo:"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+
+                    <TextView android:id="@+id/teacher_detail_email"
+                        style="@style/GeneralTextViewsMedium"
+                        android:text="awdkjawkjdhbawjkbdhjw"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="@dimen/general_bg_padding"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/general_bg_padding">
+
+            <TextView
+                style="@style/GeneralTextViewsMedium"
+                android:text="Referencias Adicionales"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView android:id="@+id/teacher_detail_referencias"
+                style="@style/GeneralTextViewsMedium"
+                android:text="awdkjawkjdhbawjkbdhjw"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/general_bg_padding"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

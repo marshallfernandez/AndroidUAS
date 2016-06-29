@@ -26,10 +26,6 @@
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="landscape"/>
-        <activity
-            android:name=".activities.AspectActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="landscape"/>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

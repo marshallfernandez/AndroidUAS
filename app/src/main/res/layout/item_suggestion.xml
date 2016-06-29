@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_components_list"
+    android:orientation="vertical"
+    android:padding="@dimen/general_bg_padding">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="0.35"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/general_bg_padding">
+
+            <TextView
+                style="@style/GeneralTextViewsMedium"
+                android:text="Profesor:"
+                android:textColor="@color/uas_azul"
+
+                android:textStyle="bold" />
+
+            <TextView android:id="@+id/item_suggestion_profesor"
+                style="@style/GeneralTextViewsMedium"
+                android:text="Creador"
+                android:textColor="@color/uas_azul"
+
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"/>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="0.35"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/general_bg_padding">
+
+            <TextView
+                style="@style/GeneralTextViewsMedium"
+                android:text="Título:"
+                android:textColor="@color/uas_azul"
+
+                android:textStyle="bold" />
+
+            <TextView android:id="@+id/item_suggestion_titulo"
+                style="@style/GeneralTextViewsMedium"
+                android:text="Tipo"
+                android:textColor="@color/uas_azul"
+
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/general_bg_padding">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fecha:"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/uas_azul"
+
+                android:textStyle="bold" />
+
+            <TextView android:id="@+id/item_suggestion_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fecha"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/uas_azul"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/general_bg_padding">
+
+        <TextView
+            style="@style/GeneralTextViewsMedium"
+            android:text="Sugerencia:"
+            android:textColor="@color/uas_azul"
+            android:textStyle="bold" />
+
+        <TextView android:id="@+id/item_suggestion_sugerencia"
+            style="@style/GeneralTextViewsMedium"
+            android:text="Analisis"
+            android:textColor="@color/uas_azul"
+            android:layout_marginTop="@dimen/general_bg_padding" />
+
+    </LinearLayout>
+
+</LinearLayout>

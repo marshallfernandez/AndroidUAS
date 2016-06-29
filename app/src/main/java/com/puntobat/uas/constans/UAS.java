@@ -1,7 +1,8 @@
 package com.puntobat.uas.constans;
 
-import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.v4.app.FragmentManager;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.puntobat.uas.helpers.SpecialtyInfo;
@@ -9,12 +10,15 @@ import com.puntobat.uas.model.Aspect;
 import com.puntobat.uas.model.Course;
 import com.puntobat.uas.model.EducationalObjective;
 import com.puntobat.uas.model.ImprovementPlan;
+import com.puntobat.uas.model.Schedule;
 import com.puntobat.uas.model.Specialty;
 import com.puntobat.uas.model.StudentResult;
 import com.puntobat.uas.model.Suggestion;
+import com.puntobat.uas.model.Teacher;
 import com.puntobat.uas.model.User;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by edu24 on 29/04/2016.
@@ -24,6 +28,7 @@ public class UAS {
     public static int screenWidth;
     public static int screenHeight;
     public static String appLanguage = "es";
+    public static boolean ISREFRESHING = false;
 
     public static User USER;
 
@@ -36,6 +41,7 @@ public class UAS {
     public static StudentResult STUDENTRESULT;
     public static EducationalObjective EDUCATIONALOBJECTIVE;
     public static Specialty SPECIALTY;
+    public static Schedule SCHEDULE;
 
     public static int INFOINDEX;
 
@@ -51,24 +57,40 @@ public class UAS {
     public static String LANGUAGEKEY = "Language";
     public static String USERKEY = "User";
 
-    public static boolean esNumero(String str) {
+    public static int IDCONTAINER;
+    public static FragmentManager FRAGMENTMNGR;
+
+    public static TextView ABTITLE;
+
+    public static ArrayList<Teacher> TEACHERS;
+
+    public static boolean isNumber(String str) {
         for (char c : str.toCharArray()) {
             if (!Character.isDigit(c)) return false;
         }
         return true;
     }
 
-    public static StudentResult getStudResultByAspect(int id) {
+    private static boolean existsStudResByAspects(ArrayList<Aspect> list, StudentResult sr) {
+        int id = sr.getId();
+        for (Aspect aspect : list) {
+            if (aspect.getIdStudentResult() == id)
+                return true;
+        }
+        return false;
+    }
 
-        ArrayList<StudentResult> listAux = SPECIALTIESINFO.get(INFOINDEX).STUDENTRESULTS;
+    public static ArrayList<StudentResult> getStudResultsByAspects(ArrayList<Aspect> aspectsList) {
 
-        for (int i = 0; i < listAux.size(); i++) {
-            StudentResult stdResult = listAux.get(i);
-            if (stdResult.getId() == id)
-                return stdResult;
+        ArrayList<StudentResult> newList = new ArrayList<StudentResult>();
+        ArrayList<StudentResult> studResList = UAS.SPECIALTIESINFO.get(UAS.INFOINDEX).STUDENTRESULTS;
+
+        for (StudentResult sr : studResList) {
+            if (existsStudResByAspects(aspectsList, sr))
+                newList.add(sr);
         }
 
-        return null;
+        return newList;
     }
 
     public static Specialty getSpecialtyById(int idSpecialty) {
@@ -187,5 +209,33 @@ public class UAS {
         prefsEditor.remove(UAS.LOGGEDUSERKEY);
 
         prefsEditor.commit();
+    }
+
+    private static boolean existsLevel(int l, ArrayList<Integer> list) {
+        for (Integer i : list) {
+            if (l == i)
+                return true;
+        }
+        return false;
+    }
+
+    public static ArrayList<Integer> getLevelsByCourses() {
+        ArrayList<Course> aux = UAS.SPECIALTIESINFO.get(UAS.INFOINDEX).COURSES;
+        ArrayList<Integer> list = new ArrayList<Integer>();
+
+        for (Course c : aux) {
+            int l = Integer.valueOf(c.getAcademicLevel());
+            if (!existsLevel(l, list))
+                list.add(l);
+        }
+
+        Collections.sort(list,Collections.<Integer>reverseOrder());
+
+        return list;
+    }
+
+    public static String getDateFormat(String badFormat){
+        String newDate = new String(badFormat);
+        return newDate.substring(0,10);
     }
 }

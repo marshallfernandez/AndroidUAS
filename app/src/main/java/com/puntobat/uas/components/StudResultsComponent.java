@@ -45,7 +45,7 @@ public class StudResultsComponent extends LinearLayout {
         this.auxiliar = (LinearLayout) findViewById(R.id.component_stud_results_linear);
 
         for (StudentResult studentResult : list) {
-            StudResultComponent component = new StudResultComponent(_context, studentResult);
+            StudResultComponent component = new StudResultComponent(_context, studentResult,true);
             this.auxiliar.addView(component);
         }
 

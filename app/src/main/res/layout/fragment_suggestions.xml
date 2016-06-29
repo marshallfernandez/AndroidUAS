@@ -2,12 +2,38 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/uas_plomo">
+    android:background="@color/uas_plomo_fondo">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sugerencias :D"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true">
+
+        <ImageView android:id="@+id/fragment_suggestions_no_found_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView android:id="@+id/fragment_suggestions_no_found_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/fragment_suggestions_no_found_img"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/uas_plomo_oscuro" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout android:id="@+id/fragment_suggestions_linear"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/uas_plomo_fondo"
+            android:padding="@dimen/general_bg_padding"/>
+
+    </ScrollView>
 
 </RelativeLayout>

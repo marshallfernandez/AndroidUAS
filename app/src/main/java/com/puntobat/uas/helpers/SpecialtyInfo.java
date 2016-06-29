@@ -5,6 +5,7 @@ import com.puntobat.uas.model.Course;
 import com.puntobat.uas.model.EducationalObjective;
 import com.puntobat.uas.model.ImprovementPlan;
 import com.puntobat.uas.model.Specialty;
+import com.puntobat.uas.model.SpecialtyConf;
 import com.puntobat.uas.model.StudentResult;
 import com.puntobat.uas.model.Suggestion;
 
@@ -22,6 +23,8 @@ public class SpecialtyInfo {
     public ArrayList<EducationalObjective> EDUCATIONALOBJECTIVES;
     public ArrayList<Suggestion> SUGGESTIONS;
     public ArrayList<ImprovementPlan> IMPROVEMENTPLANS;
+    public String HTMLREPORT;
+    public SpecialtyConf SPECCONFIG;
 
     public SpecialtyInfo(){}
 

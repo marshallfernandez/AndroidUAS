@@ -14,6 +14,7 @@ public class Course {
     private String code;
     private String name;
     private ArrayList<Schedule> schedules;
+    private ArrayList<Semester> semesters;
     private Date created_at;
     private Date updated_at;
     private Date deleted_at;
@@ -66,6 +67,14 @@ public class Course {
 
     public void setSchedules(ArrayList<Schedule> schedules) {
         this.schedules = schedules;
+    }
+
+    public ArrayList<Semester> getSemesters() {
+        return semesters;
+    }
+
+    public void setSemesters(ArrayList<Semester> semesters) {
+        this.semesters = semesters;
     }
 
     public Date getCreated_at() {

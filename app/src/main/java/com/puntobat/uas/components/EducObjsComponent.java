@@ -44,7 +44,7 @@ public class EducObjsComponent extends LinearLayout {
         this.auxiliar = (LinearLayout) findViewById(R.id.linear_final_educ_objs);
 
         for (EducationalObjective educationalObjective : list) {
-            EducObjComponent component = new EducObjComponent(_context, educationalObjective);
+            EducObjComponent component = new EducObjComponent(_context, educationalObjective,true);
             this.auxiliar.addView(component);
         }
 

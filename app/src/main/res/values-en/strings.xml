@@ -58,4 +58,12 @@
     <string name="uas_ini_dialog_titulo">Registered Users</string>
     <string name="uas_ini_dialog_titulo_confirm_pass">Confirm Password</string>
     <string name="uas_ini_dialog_confirm_pass">Confirm Password</string>
+    <string name="uas_ini_toast_pass_incorrecta">Incorrect Password</string>
+    <string name="uas_ini_alert_borrar_info">Delete Information</string>
+    <string name="uas_ini_alert_borrar_info_pregunta">Do you want to delete your information?</string>
+    <string name="uas_ini_alert_necesita_internet">The first time you log you will need an internet connection</string>
+    <string name="uas_ya_actualizando">Information is being updated, please wait</string>
+    <string name="uas_ab_deslizar_actualizar">Swipe down to update</string>
+    <string name="uas_principal_nada_registrado">Nothing registered</string>
+    <string name="uas_cursos_nivel_titulo">Level</string>
 </resources>

@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="20dp">
+            android:padding="@dimen/general_bg_padding">
 
             <TextView
                 android:id="@+id/home_specialty_name"
@@ -26,153 +26,161 @@
                 android:text="Ingeniería"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@color/uas_azul"
-                android:textStyle="bold"
-                android:typeface="monospace"/>
+                android:textStyle="bold" />
 
         </LinearLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:padding="@dimen/general_bg_padding">
 
-            <LinearLayout
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/uas_home_codigo"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/uas_azul"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/home_specialty_code"
+                    android:layout_width="500dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="Ingeniería"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/uas_azul" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_centerInParent="true">
+                android:layout_marginTop="@dimen/general_bg_padding">
 
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:text="@string/uas_home_descripcion"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/uas_azul"
+                    android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/uas_home_codigo"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/uas_azul"
-                        android:textStyle="bold"
-                        android:typeface="monospace" />
+                <TextView
+                    android:id="@+id/home_specialty_description"
+                    android:layout_width="500dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="Ingeniería"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/uas_azul" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/uas_home_descripcion"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/uas_azul"
-                        android:textStyle="bold"
-                        android:typeface="monospace"
-                        android:layout_marginTop="5dp"/>
+            </RelativeLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/uas_home_coordinador"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/uas_azul"
-                        android:textStyle="bold"
-                        android:typeface="monospace"
-                        android:layout_marginTop="5dp" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/general_bg_padding">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/uas_home_criterios"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/uas_azul"
-                        android:textStyle="bold"
-                        android:typeface="monospace"
-                        android:layout_marginTop="5dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/uas_home_aceptacion"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/uas_azul"
-                        android:textStyle="bold"
-                        android:typeface="monospace"
-                        android:layout_marginTop="5dp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/uas_home_aceptacion_porc"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/uas_azul"
-                        android:textStyle="bold"
-                        android:typeface="monospace"
-                        android:layout_marginTop="5dp" />
-
-                </LinearLayout>
-
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="50dp">
+                    android:text="@string/uas_home_coordinador"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/uas_azul"
+                    android:textStyle="bold" />
 
-                    <TextView android:id="@+id/home_specialty_code"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ingeniería"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/uas_azul"
-                        android:typeface="monospace" />
+                <TextView
+                    android:id="@+id/home_specialty_coordinator"
+                    android:layout_width="500dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="Ingeniería"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/uas_azul" />
 
-                    <TextView android:id="@+id/home_specialty_description"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ingeniería"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/uas_azul"
-                        android:typeface="monospace"
-                        android:layout_marginTop="5dp"/>
+            </RelativeLayout>
 
-                    <TextView android:id="@+id/home_specialty_coordinator"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ingeniería"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/uas_azul"
-                        android:typeface="monospace"
-                        android:layout_marginTop="5dp"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/general_bg_padding">
 
-                    <TextView android:id="@+id/home_specialty_criteria"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ingeniería"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/uas_azul"
-                        android:typeface="monospace"
-                        android:layout_marginTop="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/uas_home_criterios"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/uas_azul"
+                    android:textStyle="bold" />
 
-                    <TextView android:id="@+id/home_specialty_aceptation"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ingeniería"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/uas_azul"
-                        android:typeface="monospace"
-                        android:layout_marginTop="5dp"/>
+                <TextView
+                    android:id="@+id/home_specialty_criteria"
+                    android:layout_width="500dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="Ingeniería"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/uas_azul" />
 
-                    <TextView android:id="@+id/home_specialty_aceptation_perc"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ingeniería"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                        android:textColor="@color/uas_azul"
-                        android:typeface="monospace"
-                        android:layout_marginTop="5dp"/>
+            </RelativeLayout>
 
-                </LinearLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/general_bg_padding">
 
-            </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/uas_home_aceptacion"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/uas_azul"
+                    android:textStyle="bold" />
 
-        </RelativeLayout>
+                <TextView
+                    android:id="@+id/home_specialty_aceptation"
+                    android:layout_width="500dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="Ingeniería"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/uas_azul" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/general_bg_padding">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/uas_home_aceptacion_porc"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/uas_azul"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/home_specialty_aceptation_perc"
+                    android:layout_width="500dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="Ingeniería"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/uas_azul" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
 
     </LinearLayout>
 

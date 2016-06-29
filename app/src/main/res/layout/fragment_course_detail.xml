@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/uas_plomo_fondo">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/fragment_course_scheds"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/uas_plomo_fondo"
+            android:orientation="vertical"
+            android:padding="@dimen/general_bg_padding">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/uas_plomo">
+
+                <TextView
+                    style="@style/GeneralTextViewsMedium"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="Código:"
+                    android:layout_margin="@dimen/general_bg_padding"/>
+
+                <TextView android:id="@+id/course_detail_codigo"
+                    style="@style/GeneralTextViewsMedium"
+                    android:textColor="@color/black"
+                    android:text="CODIGO"
+                    android:layout_margin="@dimen/general_bg_padding"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/uas_plomo">
+
+                <TextView
+                    style="@style/GeneralTextViewsMedium"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="Nivel:"
+                    android:layout_margin="@dimen/general_bg_padding"/>
+
+                <TextView android:id="@+id/course_detail_nivel"
+                    style="@style/GeneralTextViewsMedium"
+                    android:textColor="@color/black"
+                    android:text="NIVEL"
+                    android:layout_margin="@dimen/general_bg_padding"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/uas_plomo">
+
+                <TextView
+                    style="@style/GeneralTextViewsMedium"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:text="Especialidad:"
+                    android:layout_margin="@dimen/general_bg_padding"/>
+
+                <TextView android:id="@+id/course_detail_especialidad"
+                    style="@style/GeneralTextViewsMedium"
+                    android:textColor="@color/black"
+                    android:text="ESPECIALIDAD"
+                    android:layout_margin="@dimen/general_bg_padding"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/uas_plomo_fondo">
+
+                <TextView android:id="@+id/course_detail_sched_title"
+                    style="@style/GeneralTextViewsMedium"
+                    android:textStyle="bold"
+                    android:textColor="@color/uas_plomo_oscuro"
+                    android:text="Horarios del curso"
+                    android:layout_margin="@dimen/general_bg_padding"/>
+
+                <LinearLayout android:id="@+id/fragment_course_detail_sched_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/course_detail_sched_title"
+                    android:orientation="vertical"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

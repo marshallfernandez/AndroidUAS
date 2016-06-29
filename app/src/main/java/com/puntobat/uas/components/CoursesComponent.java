@@ -10,7 +10,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.puntobat.uas.R;
+import com.puntobat.uas.model.Aspect;
 import com.puntobat.uas.model.Course;
+
+import java.util.ArrayList;
 
 /**
  * Created by edu24 on 1/06/2016.
@@ -19,42 +22,36 @@ public class CoursesComponent extends LinearLayout {
 
     public LinearLayout linearLayout;
     public Context _context;
-    public Course auxiliar;
+    public String title;
+    public ArrayList<Course> listCourses;
+    public TextView txtTitulo;
+    public LinearLayout auxiliar;
 
-    public CoursesComponent(Context context, Course course){
+
+    public CoursesComponent(Context context, String titulo, ArrayList<Course> lista) {
         super(context);
         this._context = context;
-        this.auxiliar = course;
+        this.title = titulo;
+        this.listCourses = lista;
 
         inflate();
     }
 
-    public void inflate(){
+    public void inflate() {
 
         LayoutInflater layoutInflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         linearLayout = new LinearLayout(_context);
-        layoutInflater.inflate(R.layout.item_course, this);
+        layoutInflater.inflate(R.layout.component_courses, this);
+        this.txtTitulo = (TextView) findViewById(R.id.component_courses_nombre_titulo);
+        this.txtTitulo.setText(getResources().getString(R.string.uas_cursos_nivel_titulo) + " " + title);
 
-        Button viewSchedulesButton = (Button) findViewById(R.id.item_course_button_schedules);
-        TextView name = (TextView) findViewById(R.id.item_course_name);
-        TextView code = (TextView) findViewById(R.id.item_course_code);
-        TextView level = (TextView) findViewById(R.id.item_course_level);
+        this.auxiliar = (LinearLayout) findViewById(R.id.component_courses_list);
 
-        String myString = new String(auxiliar.getName());
-        SpannableString nameAux = new SpannableString(myString);
-        nameAux.setSpan(new UnderlineSpan(), 0, myString.length(), 0);
-
-        name.setText(nameAux);
-        code.setText(auxiliar.getCode());
-        level.setText(auxiliar.getAcademicLevel());
-
-        viewSchedulesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //view schedules
-            }
-        });
+        for (Course c : listCourses) {
+            CourseComponent component = new CourseComponent(_context, c);
+            this.auxiliar.addView(component);
+        }
 
     }
 }

@@ -15,24 +15,46 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:title="@string/uas_ab_especialidades"
-            app:theme="@style/ToolbarTheme"
-            app:titleTextAppearance="@style/TextAppearance.AppCompat.Large" />
+            app:theme="@style/ToolbarTheme">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    style="@style/GeneralTextViewsMedium"
+                    android:text="@string/uas_ab_especialidades"
+                    android:textColor="@color/white"
+                    android:layout_centerInParent="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:text="@string/uas_ab_deslizar_actualizar"
+                    android:textColor="@color/white"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"/>
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipe_refresh_specialties"
-            android:layout_below="@+id/toolbar_specialties"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar_specialties">
 
             <ListView
                 android:id="@+id/list_specialties"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@color/uas_plomo_fondo"
                 android:divider="@color/uas_plomo_oscuro"
                 android:dividerHeight="1dp"
-                android:background="@color/uas_plomo_fondo"
-                android:padding="@dimen/general_bg_padding"/>
+                android:padding="@dimen/general_bg_padding" />
 
         </android.support.v4.widget.SwipeRefreshLayout>
 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/component_teacher_linear"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_components_list_selector"
+    android:orientation="vertical"
+    android:padding="@dimen/general_bg_padding">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/component_teacher_codigo"
+            style="@style/GeneralTextViewsMedium"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="00000000"/>
+
+        <TextView
+            android:id="@+id/component_teacher_nombre"
+            style="@style/GeneralTextViewsMedium"
+            android:layout_marginLeft="@dimen/general_bg_padding"
+            android:layout_toRightOf="@id/component_teacher_codigo"
+            android:textColor="@color/black" />
+
+    </RelativeLayout>
+
+</LinearLayout>

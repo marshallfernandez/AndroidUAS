@@ -12,6 +12,7 @@ public class Specialty {
     private String name;
     private String description;
     private Teacher teacher;
+    private String idTeacher;
     private Date created_at;
     private Date updated_at;
     private Date deleted_at;

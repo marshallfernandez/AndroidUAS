@@ -18,21 +18,17 @@
             android:padding="@dimen/general_bg_padding">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/uas_improv_plan_usuario"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                style="@style/GeneralTextViewsMedium"
+                android:text="@string/uas_improv_plan_creador"
                 android:textColor="@color/uas_azul"
-                android:typeface="monospace"
+                
                 android:textStyle="bold" />
 
-            <TextView android:id="@+id/item_improv_plan_usuario"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Usuario"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            <TextView android:id="@+id/item_improv_plan_creador"
+                style="@style/GeneralTextViewsMedium"
+                android:text="Creador"
                 android:textColor="@color/uas_azul"
-                android:typeface="monospace"
+                
                 android:layout_alignParentRight="true"/>
 
         </RelativeLayout>
@@ -49,21 +45,17 @@
             android:padding="@dimen/general_bg_padding">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/uas_improv_plan_creador"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                style="@style/GeneralTextViewsMedium"
+                android:text="Tipo:"
                 android:textColor="@color/uas_azul"
-                android:typeface="monospace"
+                
                 android:textStyle="bold" />
 
-            <TextView android:id="@+id/item_improv_plan_creador"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Creador"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            <TextView android:id="@+id/item_improv_plan_tipo"
+                style="@style/GeneralTextViewsMedium"
+                android:text="Tipo"
                 android:textColor="@color/uas_azul"
-                android:typeface="monospace"
+                
                 android:layout_alignParentRight="true"/>
 
         </RelativeLayout>
@@ -76,58 +68,25 @@
         android:orientation="horizontal">
 
         <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_weight="0.35"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/general_bg_padding">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/uas_improv_plan_fechai"
+                android:text="Fecha de Implementación:"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/uas_azul"
-                android:typeface="monospace"
+                
                 android:textStyle="bold" />
 
-            <TextView android:id="@+id/item_improv_plan_fechai"
+            <TextView android:id="@+id/item_improv_plan_fechaimp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Usuario"
+                android:text="Fecha"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/uas_azul"
-                android:typeface="monospace"
-                android:layout_alignParentRight="true"/>
-
-        </RelativeLayout>
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="0.3"/>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_weight="0.35"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/general_bg_padding">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/uas_improv_plan_fechaf"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/uas_azul"
-                android:typeface="monospace"
-                android:textStyle="bold" />
-
-            <TextView android:id="@+id/item_improv_plan_fechaf"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Creador"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                android:textColor="@color/uas_azul"
-                android:typeface="monospace"
                 android:layout_alignParentRight="true"/>
 
         </RelativeLayout>
@@ -137,33 +96,33 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:padding="@dimen/general_bg_padding">
 
-        <TextView android:id="@+id/item_improv_plan_descripcion_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/uas_improv_plan_descripcion"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        <TextView
+            style="@style/GeneralTextViewsMedium"
+            android:text="Análisis Causal:"
             android:textColor="@color/uas_azul"
-            android:typeface="monospace"
             android:textStyle="bold" />
 
-    </LinearLayout>
+        <TextView android:id="@+id/item_improv_plan_analisis"
+            style="@style/GeneralTextViewsMedium"
+            android:text="Analisis"
+            android:textColor="@color/uas_azul"
+            android:layout_marginTop="@dimen/general_bg_padding" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:padding="@dimen/general_bg_padding">
+        <TextView
+            style="@style/GeneralTextViewsMedium"
+            android:text="@string/uas_improv_plan_descripcion"
+            android:textColor="@color/uas_azul"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/general_bg_padding"/>
 
         <TextView android:id="@+id/item_improv_plan_descripcion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/GeneralTextViewsMedium"
             android:text="Descripción"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/uas_azul"
-            android:typeface="monospace"/>
+            android:layout_marginTop="@dimen/general_bg_padding" />
 
     </LinearLayout>
 
@@ -172,38 +131,16 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/general_bg_padding">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <Button android:id="@+id/item_improv_plan_boton_descargar"
+            android:layout_width="230dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_centerInParent="true">
-
-            <Button android:id="@+id/item_improv_plan_boton_descargar"
-                android:layout_width="230dp"
-                android:layout_height="wrap_content"
-                android:text="@string/uas_improv_plan_descargar"
-                android:textColor="@color/black"
-                android:typeface="monospace"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:background="@drawable/bg_button_login_selector"
-                android:textAllCaps="false"
-                android:padding="10dp"
-                android:layout_centerInParent="true"/>
-
-            <Button android:id="@+id/item_improv_plan_boton_actividades"
-                android:layout_width="230dp"
-                android:layout_height="wrap_content"
-                android:text="@string/uas_improv_plan_actividades"
-                android:textColor="@color/black"
-                android:typeface="monospace"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:background="@drawable/bg_button_login_selector"
-                android:textAllCaps="false"
-                android:padding="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_centerInParent="true"/>
-
-        </LinearLayout>
+            android:text="@string/uas_improv_plan_descargar"
+            android:textColor="@color/black"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:background="@drawable/bg_button_login_selector"
+            android:textAllCaps="false"
+            android:padding="10dp"
+            android:layout_centerInParent="true"/>
 
     </RelativeLayout>
 

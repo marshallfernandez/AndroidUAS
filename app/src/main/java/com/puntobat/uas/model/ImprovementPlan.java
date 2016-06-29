@@ -18,6 +18,7 @@ public class ImprovementPlan {
     private String description;
     private String implementationDate;
     private String status;
+    private String fileURL;
     private ImprovementPlanType improvementPlanType;
     private Teacher teacher;
     private Date created_at;
@@ -104,6 +105,14 @@ public class ImprovementPlan {
 
     public void setImplementationDate(String implementationDate) {
         this.implementationDate = implementationDate;
+    }
+
+    public String getFileURL() {
+        return fileURL;
+    }
+
+    public void setFileURL(String fileURL) {
+        this.fileURL = fileURL;
     }
 
     public String getStatus() {

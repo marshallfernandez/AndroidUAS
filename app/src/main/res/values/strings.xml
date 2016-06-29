@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">UAS</string>
+    <string name="app_name">UAS</string>
     <string name="action_settings" translatable="false">Settings</string>
 	
 	<!-- textos UAS -->
@@ -11,10 +11,11 @@
 	</string-array>
 
 	<string name="uas_texto_cargando">Cargando</string>
-
 	<string name="uas_bienvenida">¡Bienvenido!</string>
+	<string name="uas_ya_actualizando">Ya se está actualizando, espere por favor</string>
 	<string name="uas_ab_inicio">Mi Facultad</string>
 	<string name="uas_ab_especialidades">Especialidades</string>
+	<string name="uas_ab_deslizar_actualizar">Deslice hacia abajo para actualizar</string>
 	<string name="uas_nav_inicio">Inicio</string>
 	<string name="uas_nav_unidadAcad">Unidad Académica</string>
 	<string name="uas_nav_objEd">Objetivos Educativos</string>
@@ -31,6 +32,8 @@
 	<string name="uas_ini_dialog_titulo">Usuarios registrados</string>
 	<string name="uas_ini_dialog_titulo_confirm_pass">Confirmar Contraseña</string>
 	<string name="uas_ini_dialog_confirm_pass">Confirmar Contraseña</string>
+	<string name="uas_ini_alert_necesita_internet">La primera vez que se inicie sesión necesitará tener conexión a internet</string>
+	<string name="uas_ini_toast_pass_incorrecta">Contraseña Incorrecta</string>
 	<string name="uas_ini_hint_usuario">Usuario</string>
 	<string name="uas_ini_hint_pass">Contraseña</string>
 	<string name="uas_ini_spinner_idioma">Idioma</string>
@@ -62,6 +65,7 @@
 	<string name="uas_courses_ver_horarios">Ver Horarios</string>
 	<string name="uas_courses_codigo">Código:</string>
 	<string name="uas_courses_nivel">Nivel:</string>
+	<string name="uas_cursos_nivel_titulo">Nivel</string>
 	<string name="uas_improv_plan_usuario">Usuario:</string>
 	<string name="uas_improv_plan_creador">Creador:</string>
 	<string name="uas_improv_plan_fechai">Fecha Inicio:</string>
@@ -69,6 +73,7 @@
 	<string name="uas_improv_plan_descripcion">Descripción:</string>
 	<string name="uas_improv_plan_descargar">Descargar</string>
 	<string name="uas_improv_plan_actividades">Ver Actividades</string>
+	<string name="uas_principal_nada_registrado">No hay nada registrado</string>
 
 	<string name="uas_error_login">El usuario y/o contraseña son inválidos</string>
 </resources>

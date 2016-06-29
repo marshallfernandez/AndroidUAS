@@ -6,20 +6,25 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.Point;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -48,6 +53,7 @@ public class InitialActivity extends AppCompatActivity implements Loadingable {
 
     Button loginButton;
     Button usersButton;
+    ImageButton alertButton;
     ImageView visiblePassButton;
     ImageView deleteUserButton;
     Spinner langSpinner;
@@ -120,10 +126,13 @@ public class InitialActivity extends AppCompatActivity implements Loadingable {
         login = getController.login(loginRequest);
 
         if (login) { //jalo todas la info de la bd en una
-            UAS.SPECIALTIES = getController.getSpecialties();
-            UAS.SPECIALTIESINFO = getController.getSpecialtiesInfo();
+            int profileAux = UAS.USER.getIdProfile();
+            if (profileAux == 3 || profileAux == 4 || profileAux == 5) {
+                UAS.SPECIALTIES = getController.getSpecialties();
+                UAS.SPECIALTIESINFO = getController.getSpecialtiesInfo();
 
-            saveSPData();
+                saveSPData();
+            }
         }
 
     }
@@ -131,9 +140,14 @@ public class InitialActivity extends AppCompatActivity implements Loadingable {
     @Override
     public void afterTask() {
         if (login) {
-            Intent intent = new Intent(InitialActivity.this, SpecialtiesActivity.class);
-            startActivity(intent);
-            finish();
+            int profileAux = UAS.USER.getIdProfile();
+            if (profileAux == 3 || profileAux == 4 || profileAux == 5) {
+                Intent intent = new Intent(InitialActivity.this, SpecialtiesActivity.class);
+                startActivity(intent);
+                finish();
+            }
+            else
+                Toast.makeText(InitialActivity.this, "La aplicación solo admite acreditadores", Toast.LENGTH_LONG).show();
         } else
             Toast.makeText(InitialActivity.this, R.string.uas_error_login, Toast.LENGTH_SHORT).show();
 
@@ -222,6 +236,7 @@ public class InitialActivity extends AppCompatActivity implements Loadingable {
 
         loginButton = (Button) findViewById(R.id.loginButton);
         usersButton = (Button) findViewById(R.id.users_button);
+        alertButton = (ImageButton) findViewById(R.id.ini_alert_button);
         visiblePassButton = (ImageView) findViewById(R.id.ini_button_pass_visible);
         deleteUserButton = (ImageView) findViewById(R.id.ini_button_delete_username);
         langSpinner = (Spinner) findViewById(R.id.languageSpinner);
@@ -232,8 +247,15 @@ public class InitialActivity extends AppCompatActivity implements Loadingable {
 
         ArrayList<String> listLoggedUsers = UAS.getLoggedUsers(myPref);
 
-        usersDialog = new UsersDialog(this,myPref);
+        usersDialog = new UsersDialog(this, myPref);
         usersDialog.updateLayout(listLoggedUsers);
+
+        alertButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                displayPopupWindow(v);
+            }
+        });
 
         langSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -324,6 +346,24 @@ public class InitialActivity extends AppCompatActivity implements Loadingable {
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
             }
         });
+
+        alertButton.setVisibility(View.GONE);
+        langSpinner.setVisibility(View.GONE);
+    }
+
+    private void displayPopupWindow(View anchorView) {
+        PopupWindow popup = new PopupWindow(InitialActivity.this);
+        View layout = getLayoutInflater().inflate(R.layout.ini_popup_content, null);
+        popup.setContentView(layout);
+        // Set content width and height
+        popup.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
+        popup.setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
+        // Closes the popup window when touch outside of it - when looses focus
+        popup.setOutsideTouchable(true);
+        popup.setFocusable(true);
+        // Show anchored to button
+        popup.setBackgroundDrawable(new BitmapDrawable());
+        popup.showAsDropDown(anchorView, 0, 10);
     }
 
     private void cambiaIdioma(String newLanguage) {
@@ -349,7 +389,7 @@ public class InitialActivity extends AppCompatActivity implements Loadingable {
         public void updateLayout(ArrayList<String> lines) {
             LinearLayout linear = (LinearLayout) findViewById(R.id.ini_users_layout_linear);
             for (String s : lines) {
-                IniUsersComponent newUser = new IniUsersComponent(context,s,this,sp);
+                IniUsersComponent newUser = new IniUsersComponent(context, s, this, sp);
                 linear.addView(newUser);
             }
         }

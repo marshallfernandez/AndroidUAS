@@ -14,7 +14,6 @@
     </style>
 
     <style name="ToolbarTheme">
-        <item name="android:typeface">monospace</item>
         <item name="android:textColorPrimary">@color/white</item>
         <item name="colorPrimary">@color/uas_azul</item>
         <item name="colorPrimaryDark">@color/uas_azul</item>
@@ -32,20 +31,28 @@
         <item name="android:windowBackground">@color/uas_azul</item>
     </style>
 
-    <style name="EditTextsLogin" parent="@style/TextAppearance.AppCompat.Large">
+    <style name="EditTextsLogin" parent="@style/TextAppearance.AppCompat.Medium">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:textColor">@color/black</item>
-        <item name="android:typeface">monospace</item>
         <item name="android:maxLength">8</item>
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:textColorHint">@color/uas_plomo_oscuro</item>
     </style>
 
-    <style name="GeneralTextViews" parent="@style/TextAppearance.AppCompat.Large">
+    <style name="GeneralTextViewsSmall" parent="@style/TextAppearance.AppCompat.Small">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:typeface">monospace</item>
+    </style>
+
+    <style name="GeneralTextViewsMedium" parent="@style/TextAppearance.AppCompat.Medium">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="GeneralTextViewsLarge" parent="@style/TextAppearance.AppCompat.Large">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
     
 </resources>

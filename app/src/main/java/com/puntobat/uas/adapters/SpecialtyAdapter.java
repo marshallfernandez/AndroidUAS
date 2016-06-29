@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.puntobat.uas.activities.MainActivity;
 import com.puntobat.uas.R;
@@ -62,11 +63,16 @@ public class SpecialtyAdapter extends BaseAdapter {
         linearSpecialty.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UAS.SPECIALTY = specialty;
-                UAS.INFOINDEX = position;
-                Intent intent = new Intent(_context, MainActivity.class);
-                _context.startActivity(intent);
-                ((Activity)_context).finish();
+                if(!UAS.ISREFRESHING) {
+                    UAS.SPECIALTY = specialty;
+                    UAS.INFOINDEX = position;
+                    Intent intent = new Intent(_context, MainActivity.class);
+                    _context.startActivity(intent);
+                    ((Activity) _context).finish();
+                }
+                else{
+                    Toast.makeText(_context, R.string.uas_ya_actualizando, Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

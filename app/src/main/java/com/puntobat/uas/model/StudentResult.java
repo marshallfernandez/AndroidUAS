@@ -12,6 +12,7 @@ public class StudentResult {
     private String description;
     private String identificator;
     private String semesterReg;
+    private int status;
     private ArrayList<EducationalObjective> listEducObj;
     private ArrayList<Aspect> listAspects;
     private Date created_at;
@@ -58,6 +59,14 @@ public class StudentResult {
 
     public void setSemesterReg(String semesterReg) {
         this.semesterReg = semesterReg;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
     public ArrayList<EducationalObjective> getListEducObj() {

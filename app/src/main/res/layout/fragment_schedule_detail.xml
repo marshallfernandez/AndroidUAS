@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/uas_plomo_fondo">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/fragment_course_scheds"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/uas_plomo_fondo"
+            android:orientation="vertical"
+            android:padding="@dimen/general_bg_padding">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/uas_plomo_fondo">
+
+                <TextView android:id="@+id/fragment_schedule_detail_title"
+                    style="@style/GeneralTextViewsMedium"
+                    android:textStyle="bold"
+                    android:textColor="@color/uas_plomo_oscuro"
+                    android:text="Profesores del curso"
+                    android:layout_margin="@dimen/general_bg_padding"/>
+
+                <LinearLayout android:id="@+id/fragment_schedule_detail_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/fragment_schedule_detail_title"
+                    android:orientation="vertical"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
