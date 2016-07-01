@@ -21,13 +21,15 @@ public class CourseComponent extends LinearLayout {
     public Course auxiliar;
     public TextView courseCode;
     public TextView courseName;
+    public String resultUrl;
 
     View linear;
 
-    public CourseComponent(Context context, Course course) {
+    public CourseComponent(Context context, Course course,String url) {
         super(context);
         this._context = context;
         this.auxiliar = course;
+        this.resultUrl = url;
 
         inflate();
     }
@@ -51,6 +53,7 @@ public class CourseComponent extends LinearLayout {
             @Override
             public void onClick(View v) {
                 UAS.COURSE = auxiliar;
+                UAS.COURSERESULTS = resultUrl;
                 UAS.ABTITLE.setText(auxiliar.getName());
                 UAS.FRAGMENTMNGR.beginTransaction()
                         .replace(UAS.IDCONTAINER, new CourseDetailFragment())

@@ -18,16 +18,13 @@ public class StudResultsComponent extends LinearLayout {
 
     public LinearLayout linearLayout;
     public Context _context;
-    public String title;
     public ArrayList<StudentResult> list;
-    public TextView txtTitle;
     public LinearLayout auxiliar;
 
 
-    public StudResultsComponent(Context context, String title, ArrayList<StudentResult> list) {
+    public StudResultsComponent(Context context, ArrayList<StudentResult> list) {
         super(context);
         this._context = context;
-        this.title = title;
         this.list = list;
 
         inflate();
@@ -39,8 +36,6 @@ public class StudResultsComponent extends LinearLayout {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         linearLayout = new LinearLayout(_context);
         layoutInflater.inflate(R.layout.component_student_results, this);
-        this.txtTitle = (TextView) findViewById(R.id.component_stud_results_semester_title);
-        this.txtTitle.setText(getResources().getString(R.string.uas_educ_obj_semester) + " " + title);
 
         this.auxiliar = (LinearLayout) findViewById(R.id.component_stud_results_linear);
 

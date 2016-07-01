@@ -27,12 +27,45 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout android:id="@+id/fragment_courses_listview"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="@color/uas_plomo_fondo"
-            android:padding="@dimen/general_bg_padding"/>
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/general_bg_padding">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal">
+
+                    <TextView
+                        style="@style/GeneralTextViewsMedium"
+                        android:text="Mostrando cursos del Ciclo:"
+                        android:textColor="@color/uas_plomo_oscuro"
+                        android:layout_gravity="center_vertical"/>
+
+                    <Spinner android:id="@+id/fragment_courses_spinner_semesters"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/fragment_courses_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@color/uas_plomo_fondo"
+                android:padding="@dimen/general_bg_padding"/>
+
+        </LinearLayout>
 
     </ScrollView>
 

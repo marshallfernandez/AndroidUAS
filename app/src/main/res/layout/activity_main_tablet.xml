@@ -72,6 +72,16 @@
                 android:textColor="#fff"
                  />
 
+            <TextView
+                android:id="@+id/actual_period_profile"
+                style="@style/GeneralTextViewsSmall"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="5dp"
+                android:gravity="left"
+                android:textColor="#fff"
+                />
+
         </LinearLayout>
 
         <ScrollView

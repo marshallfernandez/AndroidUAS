@@ -99,6 +99,35 @@
 
             </RelativeLayout>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/general_bg_padding">
+
+                <Button android:id="@+id/course_button_view_results"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ver Resultado de Medición"
+                    android:layout_alignParentRight="true"
+                    android:textColor="@color/white"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:background="@drawable/bg_button_evidence_selector"
+                    android:textAllCaps="false"
+                    android:padding="10dp"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/general_bg_padding">
+
+                <WebView
+                    android:id="@+id/results_by_course_webview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </RelativeLayout>
+
         </LinearLayout>
 
     </ScrollView>

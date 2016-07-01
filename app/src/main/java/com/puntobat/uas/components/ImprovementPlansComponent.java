@@ -57,11 +57,6 @@ public class ImprovementPlansComponent extends LinearLayout {
         analysis.setText(auxiliar.getCauseAnalisis());
         description.setText(auxiliar.getDescription());
 
-        download.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+        download.setVisibility(View.GONE);
     }
 }

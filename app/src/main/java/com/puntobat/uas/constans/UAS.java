@@ -5,12 +5,15 @@ import android.support.v4.app.FragmentManager;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.puntobat.uas.helpers.CourseWithReport;
+import com.puntobat.uas.helpers.CoursesBySemester;
 import com.puntobat.uas.helpers.SpecialtyInfo;
 import com.puntobat.uas.model.Aspect;
 import com.puntobat.uas.model.Course;
 import com.puntobat.uas.model.EducationalObjective;
 import com.puntobat.uas.model.ImprovementPlan;
 import com.puntobat.uas.model.Schedule;
+import com.puntobat.uas.model.Semester;
 import com.puntobat.uas.model.Specialty;
 import com.puntobat.uas.model.StudentResult;
 import com.puntobat.uas.model.Suggestion;
@@ -63,6 +66,8 @@ public class UAS {
     public static TextView ABTITLE;
 
     public static ArrayList<Teacher> TEACHERS;
+
+    public static String COURSERESULTS;
 
     public static boolean isNumber(String str) {
         for (char c : str.toCharArray()) {
@@ -219,12 +224,12 @@ public class UAS {
         return false;
     }
 
-    public static ArrayList<Integer> getLevelsByCourses() {
-        ArrayList<Course> aux = UAS.SPECIALTIESINFO.get(UAS.INFOINDEX).COURSES;
+    public static ArrayList<Integer> getLevelsByCourses(ArrayList<CourseWithReport> courses) {
+        ArrayList<CourseWithReport> aux = courses;
         ArrayList<Integer> list = new ArrayList<Integer>();
 
-        for (Course c : aux) {
-            int l = Integer.valueOf(c.getAcademicLevel());
+        for (CourseWithReport c : aux) {
+            int l = Integer.valueOf(c.course.getAcademicLevel());
             if (!existsLevel(l, list))
                 list.add(l);
         }
@@ -237,5 +242,29 @@ public class UAS {
     public static String getDateFormat(String badFormat){
         String newDate = new String(badFormat);
         return newDate.substring(0,10);
+    }
+
+    public static ArrayList<String> getSemestersNames(ArrayList<Semester> list){
+        ArrayList<String> newList = new ArrayList<String>();
+
+        for(Semester s:list){
+            String desc=new String(s.getDescription());
+            newList.add(desc);
+        }
+
+        return newList;
+    }
+
+    public static ArrayList<CourseWithReport> getCoursesBySemester(String semester){
+
+        ArrayList<CoursesBySemester> aux = UAS.SPECIALTIESINFO.get(UAS.INFOINDEX).COURSESBYSEMESTER;
+
+        for(CoursesBySemester coursesBySemester:aux){
+            if(coursesBySemester.semester.getDescription().compareToIgnoreCase(semester)==0) {
+                return coursesBySemester.coursesWithReport;
+            }
+        }
+
+        return new ArrayList<CourseWithReport>();
     }
 }

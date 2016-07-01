@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/uas_plomo"
+    android:orientation="horizontal"
+    android:padding="@dimen/general_bg_padding">
+
+    <TextView android:id="@+id/item_evidence_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.8"
+        android:textColor="@color/black"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:padding="10dp"/>
+
+    <Button android:id="@+id/item_evidence_download_button"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2"
+        android:text="Descargar Evidencia"
+        android:background="@drawable/bg_button_login_selector"
+        android:textColor="@color/black"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:padding="10dp"/>
+
+</LinearLayout>

@@ -17,16 +17,13 @@ public class EducObjsComponent extends LinearLayout {
 
     public LinearLayout linearLayout;
     public Context _context;
-    public String title;
     public ArrayList<EducationalObjective> list;
-    public TextView txtTitle;
     public LinearLayout auxiliar;
 
 
-    public EducObjsComponent(Context context, String title, ArrayList<EducationalObjective> list) {
+    public EducObjsComponent(Context context, ArrayList<EducationalObjective> list) {
         super(context);
         this._context = context;
-        this.title = title;
         this.list = list;
 
         inflate();
@@ -38,8 +35,6 @@ public class EducObjsComponent extends LinearLayout {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         linearLayout = new LinearLayout(_context);
         layoutInflater.inflate(R.layout.component_educ_objs, this);
-        this.txtTitle = (TextView) findViewById(R.id.educ_obj_semester_title);
-        this.txtTitle.setText(getResources().getString(R.string.uas_educ_obj_semester) + " " + title);
 
         this.auxiliar = (LinearLayout) findViewById(R.id.linear_final_educ_objs);
 

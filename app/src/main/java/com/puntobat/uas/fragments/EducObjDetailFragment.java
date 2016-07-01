@@ -21,7 +21,6 @@ import com.puntobat.uas.model.StudentResult;
 public class EducObjDetailFragment extends Fragment {
 
     TextView educObjNro;
-    TextView educObjSemester;
     TextView educObjDescrription;
     TextView educObjStudResultsTitle;
 
@@ -34,13 +33,11 @@ public class EducObjDetailFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_educational_objective_detail, container, false);
 
         educObjNro = (TextView) rootView.findViewById(R.id.edu_obj_detail_number);
-        educObjSemester = (TextView) rootView.findViewById(R.id.edu_obj_detail_semester);
         educObjDescrription = (TextView) rootView.findViewById(R.id.edu_obj_detail_description);
         educObjStudResults = (LinearLayout) rootView.findViewById(R.id.edu_obj_detail_stud_res_list);
         educObjStudResultsTitle = (TextView) rootView.findViewById(R.id.edu_obj_detail_stud_res_title);
 
         educObjNro.setText("" + UAS.EDUCATIONALOBJECTIVE.getNumber());
-        educObjSemester.setText(UAS.EDUCATIONALOBJECTIVE.getSemesterReg());
         educObjDescrription.setText(UAS.EDUCATIONALOBJECTIVE.getDescription());
 
         /*String myString = new String("Resultados Estudiantiles Asociados");

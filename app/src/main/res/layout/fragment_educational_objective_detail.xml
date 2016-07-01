@@ -46,30 +46,6 @@
                 android:background="@color/uas_plomo"
                 android:padding="@dimen/general_bg_padding">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textStyle="bold"
-                    android:textColor="@color/black"
-                    android:text="Ciclo de registro:"/>
-
-                <TextView android:id="@+id/edu_obj_detail_semester"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/black"
-                    android:text="2016-2"
-                    android:layout_alignParentRight="true"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/uas_plomo"
-                android:padding="@dimen/general_bg_padding">
-
                 <TextView android:id="@+id/edu_obj_detail_description_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

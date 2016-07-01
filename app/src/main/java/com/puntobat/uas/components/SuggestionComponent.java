@@ -22,7 +22,7 @@ public class SuggestionComponent extends LinearLayout {
     private TextView date;
     private TextView suggestion;
 
-    public SuggestionComponent(Context context, Suggestion suggestion){
+    public SuggestionComponent(Context context, Suggestion suggestion) {
         super(context);
         this._context = context;
         this.auxiliar = suggestion;
@@ -30,7 +30,7 @@ public class SuggestionComponent extends LinearLayout {
         inflate();
     }
 
-    public void inflate(){
+    public void inflate() {
 
         LayoutInflater layoutInflater = (LayoutInflater) getContext()
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -42,9 +42,12 @@ public class SuggestionComponent extends LinearLayout {
         date = (TextView) findViewById(R.id.item_suggestion_fecha);
         suggestion = (TextView) findViewById(R.id.item_suggestion_sugerencia);
 
-        teacher.setText(auxiliar.getTeacher().getName()+" "+auxiliar.getTeacher().getLastName());
+        teacher.setText(auxiliar.getTeacher().getName() + " " + auxiliar.getTeacher().getLastName());
         title.setText(auxiliar.getTitle());
-        date.setText(auxiliar.getDate());
+        if (auxiliar.getDate().compareToIgnoreCase("null") != 0)
+            date.setText(auxiliar.getDate());
+        else
+            date.setText("-");
         suggestion.setText(auxiliar.getDescription());
 
     }

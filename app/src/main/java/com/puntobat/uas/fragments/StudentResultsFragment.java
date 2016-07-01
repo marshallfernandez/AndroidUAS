@@ -36,7 +36,6 @@ public class StudentResultsFragment extends Fragment {
         noFoundImg = (ImageView) rootView.findViewById(R.id.fragment_stu_resul_no_found_img);
         noFoundText = (TextView) rootView.findViewById(R.id.fragment_stu_resul_no_found_text);
 
-        ArrayList<String> listSemesters = UAS.getSemestersByStudResults();
         ArrayList<StudentResult> listStudResultAux = UAS.SPECIALTIESINFO.get(UAS.INFOINDEX).STUDENTRESULTS;
 
         if(listStudResultAux.size()==0){
@@ -46,19 +45,8 @@ public class StudentResultsFragment extends Fragment {
 
         UAS.ABTITLE.setText("Resultados Estudiantiles");
 
-        for (String semester : listSemesters) {
-
-            ArrayList<StudentResult> ayudin = new ArrayList<StudentResult>();
-
-            for (StudentResult studentResult : listStudResultAux) {
-                if (studentResult.getSemesterReg().compareTo(semester) == 0)
-                    ayudin.add(studentResult);
-            }
-
-            StudResultsComponent studResultsComponent = new StudResultsComponent(getActivity(), semester, ayudin);
-            auxiliar.addView(studResultsComponent);
-
-        }
+        StudResultsComponent studResultsComponent = new StudResultsComponent(getActivity(), listStudResultAux);
+        auxiliar.addView(studResultsComponent);
 
         return rootView;
 

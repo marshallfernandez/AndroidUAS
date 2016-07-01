@@ -13,6 +13,7 @@ public class Schedule {
     private String code;
     private int totalStudents;
     private ArrayList<Teacher> teachers;
+    private ArrayList<Evidence> evidences;
     private Date created_at;
     private Date updated_at;
     private Date deleted_at;
@@ -57,6 +58,14 @@ public class Schedule {
 
     public void setTeachers(ArrayList<Teacher> teachers) {
         this.teachers = teachers;
+    }
+
+    public ArrayList<Evidence> getEvidences() {
+        return evidences;
+    }
+
+    public void setEvidences(ArrayList<Evidence> evidences) {
+        this.evidences = evidences;
     }
 
     public Date getCreated_at() {

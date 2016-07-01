@@ -36,7 +36,6 @@ public class EducationalObjectivesFragment extends Fragment {
         noFoundImg = (ImageView) rootView.findViewById(R.id.fragment_edu_obj_no_found_img);
         noFoundText = (TextView) rootView.findViewById(R.id.fragment_edu_obj_no_found_text);
 
-        ArrayList<String> listSemesters = UAS.getSemestersByEducObjs();
         ArrayList<EducationalObjective> listEducObjAux = UAS.SPECIALTIESINFO.get(UAS.INFOINDEX).EDUCATIONALOBJECTIVES;
 
         if(listEducObjAux.size()==0){
@@ -46,19 +45,8 @@ public class EducationalObjectivesFragment extends Fragment {
 
         UAS.ABTITLE.setText("Objetivos Educacionales");
 
-        for (String semester : listSemesters) {
-
-            ArrayList<EducationalObjective> ayudin = new ArrayList<EducationalObjective>();
-
-            for (EducationalObjective educationalObjective : listEducObjAux) {
-                if (educationalObjective.getSemesterReg().compareTo(semester) == 0)
-                    ayudin.add(educationalObjective);
-            }
-
-            EducObjsComponent educObjsComponent = new EducObjsComponent(getActivity(), semester, ayudin);
-            auxiliar.addView(educObjsComponent);
-
-        }
+        EducObjsComponent educObjsComponent = new EducObjsComponent(getActivity(), listEducObjAux);
+        auxiliar.addView(educObjsComponent);
 
         return rootView;
 

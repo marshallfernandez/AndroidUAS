@@ -31,18 +31,34 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/general_bg_padding">
 
-        <TextView
-            android:id="@+id/component_schedule_total_alumnos_titulo"
-            style="@style/GeneralTextViewsMedium"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:text="Total de Alumnos:"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true">
 
-        <TextView
-            android:id="@+id/component_schedule_total_alumnos"
-            style="@style/GeneralTextViewsMedium"
-            android:layout_alignParentRight="true"
-            android:textColor="@color/black" />
+            <Button android:id="@+id/schedule_button_evidences"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:text="Descargar Evidencias"
+                android:textColor="@color/black"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:background="@drawable/bg_button_login_selector"
+                android:textAllCaps="false"
+                android:padding="5dp"/>
+
+            <Button android:id="@+id/schedule_button_teachers"
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:text="Ver Profesores"
+                android:textColor="@color/black"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:background="@drawable/bg_button_login_selector"
+                android:textAllCaps="false"
+                android:padding="5dp"
+                android:layout_marginLeft="30dp"
+                android:layout_toRightOf="@id/schedule_button_evidences"/>
+        </LinearLayout>
 
     </RelativeLayout>
 

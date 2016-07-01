@@ -7,6 +7,9 @@ import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -26,7 +29,11 @@ public class CourseDetailFragment extends Fragment {
     TextView courseLevel;
     TextView courseSpec;
 
+    Button viewResultButton;
+
     TextView courseSchedTitle;
+
+    private WebView mWebView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,10 +46,19 @@ public class CourseDetailFragment extends Fragment {
         courseLevel = (TextView) rootView.findViewById(R.id.course_detail_nivel);
         courseSpec = (TextView) rootView.findViewById(R.id.course_detail_especialidad);
         courseSchedTitle = (TextView) rootView.findViewById(R.id.course_detail_sched_title);
+        viewResultButton = (Button) rootView.findViewById(R.id.course_button_view_results);
+        mWebView = (WebView) rootView.findViewById(R.id.results_by_course_webview);
 
         courseCode.setText(UAS.COURSE.getCode());
         courseLevel.setText(UAS.COURSE.getAcademicLevel());
         courseSpec.setText(UAS.SPECIALTY.getName());
+
+        // Enable Javascript
+        WebSettings webSettings = mWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+
+        mWebView.loadDataWithBaseURL("", UAS.COURSERESULTS, "text/html", "UTF-8", "");
+        mWebView.setVisibility(View.GONE);
 
         /*String myString = new String("Horarios del curso");
         SpannableString name = new SpannableString(myString);
@@ -56,6 +72,23 @@ public class CourseDetailFragment extends Fragment {
             ScheduleComponent component = new ScheduleComponent(getActivity(), s);
             schedList.addView(component);
         }
+
+        viewResultButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mWebView.getVisibility() == View.GONE) {
+
+                    mWebView.setVisibility(View.VISIBLE);
+                    viewResultButton.setText("Ocultar Resultados");
+
+                } else if (mWebView.getVisibility() == View.VISIBLE) {
+
+                    mWebView.setVisibility(View.GONE);
+                    viewResultButton.setText("Ver Resultados");
+
+                }
+            }
+        });
 
         return rootView;
 

@@ -43,8 +43,6 @@ public class IniUsersComponent extends LinearLayout {
 
     SharedPreferences myPref;
 
-    int userIndex;
-
     public IniUsersComponent(Context context, String string, InitialActivity.UsersDialog dg, SharedPreferences sp) {
         super(context);
         this._context = context;

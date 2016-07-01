@@ -24,12 +24,17 @@ import com.puntobat.uas.fragments.HomeFragment;
 import com.puntobat.uas.fragments.MaintFragment;
 import com.puntobat.uas.fragments.ReportFragment;
 import com.puntobat.uas.fragments.StudentResultsFragment;
+import com.puntobat.uas.helpers.SpecialtyInfo;
+import com.puntobat.uas.model.Semester;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView nameProfile;
     TextView roleProfile;
     TextView facultyProfile;
+    TextView periodProfile;
 
     TextView abTitle;
 
@@ -65,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
         nameProfile = (TextView) findViewById(R.id.name_profile);
         roleProfile = (TextView) findViewById(R.id.role_profile);
         facultyProfile = (TextView) findViewById(R.id.faculty_profile);
+        periodProfile = (TextView) findViewById(R.id.actual_period_profile);
         navNumSpec = (TextView) findViewById(R.id.nav_number_specialties);
 
         homeLinear = (LinearLayout) findViewById(R.id.home_linear);
@@ -86,14 +92,13 @@ public class MainActivity extends AppCompatActivity {
 
         if (UAS.USER.getTeacher() != null) {
             name = UAS.USER.getTeacher().getName() + " " + UAS.USER.getTeacher().getLastName();
-            role = UAS.USER.getTeacher().getCharge();
+            role = "Acreditador";
             faculty = UAS.getSpecialtyById(UAS.USER.getTeacher().getIdSpecialty()).getName();
-        } else if(UAS.USER.getAccreditor() != null){
+        } else if (UAS.USER.getAccreditor() != null) {
             name = UAS.USER.getAccreditor().getName() + " " + UAS.USER.getAccreditor().getLastName();
             role = "Acreditador";
             faculty = UAS.getSpecialtyById(UAS.USER.getAccreditor().getIdSpecialty()).getName();
-        }
-        else{
+        } else {
             name = "Admin";
             role = "Administrador";
             faculty = "";
@@ -102,6 +107,10 @@ public class MainActivity extends AppCompatActivity {
         nameProfile.setText(name);
         roleProfile.setText(role);
         facultyProfile.setText(faculty);
+
+        ArrayList<Semester> aux = UAS.SPECIALTIESINFO.get(0).PERIODSEMESTERS;
+
+        periodProfile.setText("Periodo Actual: " + aux.get(0).getDescription() + " al " + aux.get(aux.size() - 1).getDescription());
 
         navNumSpec.setText(String.valueOf(UAS.SPECIALTIES.size()));
 
@@ -112,8 +121,9 @@ public class MainActivity extends AppCompatActivity {
                 homeLinear.setSelected(true);
                 abTitle.setText(R.string.uas_ab_inicio);
 
-                if (UAS.FRAGMENTMNGR.getBackStackEntryCount() > 0)
+                for(int i = 0; i < UAS.FRAGMENTMNGR.getBackStackEntryCount(); ++i) {
                     UAS.FRAGMENTMNGR.popBackStack();
+                }
 
                 UAS.FRAGMENTMNGR.beginTransaction()
                         .replace(UAS.IDCONTAINER, new HomeFragment())
@@ -137,8 +147,9 @@ public class MainActivity extends AppCompatActivity {
                 objectivesLinear.setSelected(true);
                 abTitle.setText(R.string.uas_nav_objEd);
 
-                if (UAS.FRAGMENTMNGR.getBackStackEntryCount() > 0)
+                for(int i = 0; i < UAS.FRAGMENTMNGR.getBackStackEntryCount(); ++i) {
                     UAS.FRAGMENTMNGR.popBackStack();
+                }
 
                 UAS.FRAGMENTMNGR.beginTransaction()
                         .replace(UAS.IDCONTAINER, new EducationalObjectivesFragment())
@@ -153,8 +164,9 @@ public class MainActivity extends AppCompatActivity {
                 resultStudLinear.setSelected(true);
                 abTitle.setText(R.string.uas_nav_resEst);
 
-                if (UAS.FRAGMENTMNGR.getBackStackEntryCount() > 0)
+                for(int i = 0; i < UAS.FRAGMENTMNGR.getBackStackEntryCount(); ++i) {
                     UAS.FRAGMENTMNGR.popBackStack();
+                }
 
                 UAS.FRAGMENTMNGR.beginTransaction()
                         .replace(UAS.IDCONTAINER, new StudentResultsFragment())
@@ -169,8 +181,9 @@ public class MainActivity extends AppCompatActivity {
                 aspectsLinear.setSelected(true);
                 abTitle.setText(R.string.uas_nav_aspectos);
 
-                if (UAS.FRAGMENTMNGR.getBackStackEntryCount() > 0)
+                for(int i = 0; i < UAS.FRAGMENTMNGR.getBackStackEntryCount(); ++i) {
                     UAS.FRAGMENTMNGR.popBackStack();
+                }
 
                 UAS.FRAGMENTMNGR.beginTransaction()
                         .replace(UAS.IDCONTAINER, new AspectsFragment())
@@ -185,8 +198,9 @@ public class MainActivity extends AppCompatActivity {
                 coursesLinear.setSelected(true);
                 abTitle.setText(R.string.uas_nav_cursos);
 
-                if (UAS.FRAGMENTMNGR.getBackStackEntryCount() > 0)
+                for(int i = 0; i < UAS.FRAGMENTMNGR.getBackStackEntryCount(); ++i) {
                     UAS.FRAGMENTMNGR.popBackStack();
+                }
 
                 UAS.FRAGMENTMNGR.beginTransaction()
                         .replace(UAS.IDCONTAINER, new CoursesFragment())
@@ -201,8 +215,9 @@ public class MainActivity extends AppCompatActivity {
                 improveLinear.setSelected(true);
                 abTitle.setText(R.string.uas_nav_mejora);
 
-                if (UAS.FRAGMENTMNGR.getBackStackEntryCount() > 0)
+                for(int i = 0; i < UAS.FRAGMENTMNGR.getBackStackEntryCount(); ++i) {
                     UAS.FRAGMENTMNGR.popBackStack();
+                }
 
                 UAS.FRAGMENTMNGR.beginTransaction()
                         .replace(UAS.IDCONTAINER, new ContinuousImprovementFragment())
@@ -217,8 +232,9 @@ public class MainActivity extends AppCompatActivity {
                 resultEvalLinear.setSelected(true);
                 abTitle.setText(R.string.uas_nav_resEval);
 
-                if (UAS.FRAGMENTMNGR.getBackStackEntryCount() > 0)
+                for(int i = 0; i < UAS.FRAGMENTMNGR.getBackStackEntryCount(); ++i) {
                     UAS.FRAGMENTMNGR.popBackStack();
+                }
 
                 UAS.FRAGMENTMNGR.beginTransaction()
                         .replace(UAS.IDCONTAINER, new ReportFragment())
@@ -249,8 +265,9 @@ public class MainActivity extends AppCompatActivity {
                         .setNegativeButton(R.string.uas_alert_no, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                if (UAS.FRAGMENTMNGR.getBackStackEntryCount() > 0)
+                                for(int i = 0; i < UAS.FRAGMENTMNGR.getBackStackEntryCount(); ++i) {
                                     UAS.FRAGMENTMNGR.popBackStack();
+                                }
                             }
 
                         })

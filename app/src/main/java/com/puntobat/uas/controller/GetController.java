@@ -7,12 +7,15 @@ import com.google.gson.internal.Streams;
 import com.puntobat.uas.constans.UAS;
 import com.puntobat.uas.constans.FrameworkConstans;
 import com.puntobat.uas.controller.intent.HTTPConnector;
+import com.puntobat.uas.helpers.CourseWithReport;
+import com.puntobat.uas.helpers.CoursesBySemester;
 import com.puntobat.uas.helpers.SpecialtyInfo;
 import com.puntobat.uas.model.Accreditor;
 import com.puntobat.uas.model.Aspect;
 import com.puntobat.uas.model.Course;
 import com.puntobat.uas.model.Criterio;
 import com.puntobat.uas.model.EducationalObjective;
+import com.puntobat.uas.model.Evidence;
 import com.puntobat.uas.model.ImprovementPlan;
 import com.puntobat.uas.model.ImprovementPlanType;
 import com.puntobat.uas.model.Schedule;
@@ -399,6 +402,23 @@ public class GetController extends Controller {
 
                         }
 
+                        if (!object1.isNull("course_evidences")) {
+                            JSONArray evidenceArray = object1.getJSONArray("course_evidences");
+                            ArrayList<Evidence> evidencesList = new ArrayList<Evidence>();
+
+                            for (int l = 0; l < evidenceArray.length(); l++) {
+                                JSONObject object3 = (JSONObject) evidenceArray.get(l);
+                                Evidence newEv = new Evidence();
+
+                                newEv.name = object3.getString("file_name");
+                                newEv.url = object3.getString("file_url");
+
+                                evidencesList.add(newEv);
+                            }
+
+                            schedule.setEvidences(evidencesList);
+                        }
+
                         schedule.setTeachers(lstTeachers);
 
                         lstSched.add(schedule);
@@ -734,9 +754,9 @@ public class GetController extends Controller {
                 if (!object.isNull("IdPlanMejora"))
                     suggestion.setIdImprovePlan(Integer.valueOf(object.getString("IdPlanMejora")));
                 if (!object.isNull("IdDocente"))
-                suggestion.setIdTeacher(Integer.valueOf(object.getString("IdDocente")));
+                    suggestion.setIdTeacher(Integer.valueOf(object.getString("IdDocente")));
                 if (!object.isNull("IdEspecialidad"))
-                suggestion.setIdSpecialty(Integer.valueOf(object.getString("IdEspecialidad")));
+                    suggestion.setIdSpecialty(Integer.valueOf(object.getString("IdEspecialidad")));
                 suggestion.setDate(object.getString("Fecha"));
                 suggestion.setTitle(object.getString("Titulo"));
                 suggestion.setDescription(object.getString("Descripcion"));
@@ -836,6 +856,104 @@ public class GetController extends Controller {
         }
     }
 
+    public ArrayList<Semester> getActualSemesters(int idSpecialty) {
+        HTTPConnector poster = new HTTPConnector();
+        String result = "";
+        ArrayList<Semester> newSemesterList = new ArrayList<Semester>();
+
+        try {
+            String path = FrameworkConstans.SERVER_DOMAIN + "faculties/" + String.valueOf(idSpecialty) + FrameworkConstans.SPECCONFIG_PATH;
+            result = poster.getRESTWithToken(path);
+        } catch (Exception d) {
+            d.printStackTrace();
+            return newSemesterList;
+        }
+
+        try {
+
+            // esto es si el json devuelve un dato con varios destinos dentro
+            JSONObject object = new JSONObject(result);
+
+            if (!object.isNull("semesters")) {
+                JSONArray array = object.getJSONArray("semesters");
+
+                for (int i = 0; i < array.length(); i++) {
+                    JSONObject object1 = (JSONObject) array.get(i);
+                    Semester newSemester = new Semester();
+
+                    newSemester.setId(object1.getInt("IdCicloAcademico"));
+                    newSemester.setDescription(object1.getString("Descripcion"));
+                    if (!object1.isNull("Numero"))
+                        newSemester.setNumber(Integer.valueOf(object1.getString("Numero")));
+
+                    newSemesterList.add(newSemester);
+
+                }
+            }
+
+            return newSemesterList;
+
+        } catch (Exception d) {
+            return new ArrayList<Semester>();
+        }
+    }
+
+    private boolean existCourseInSemester(Course course, Semester semester) {
+        ArrayList<Semester> aux = course.getSemesters();
+
+        for (Semester s : aux) {
+            if (s.getId() == semester.getId())
+                return true;
+        }
+
+        return false;
+    }
+
+    private CourseWithReport getCourseWithReport(Course course, Semester semester, int idSpecialty) {
+        CourseWithReport newCourseWReport = new CourseWithReport();
+
+        newCourseWReport.course = course;
+
+        HTTPConnector poster = new HTTPConnector();
+        String result = "";
+        ArrayList<Suggestion> listSuggestions = new ArrayList<Suggestion>();
+
+        try {
+            String path = FrameworkConstans.SERVER_DOMAIN + "faculties/" + String.valueOf(idSpecialty) + FrameworkConstans.EVALUATED_COURSES_PATH + "/" + String.valueOf(course.getId()) + "/semesters/" + String.valueOf(semester.getId());
+            result = poster.getRESTWithToken(path);
+            newCourseWReport.reportBySemester = result;
+        } catch (Exception d) {
+            d.printStackTrace();
+            newCourseWReport.reportBySemester = "";
+        }
+
+        return newCourseWReport;
+    }
+
+    private ArrayList<CoursesBySemester> getCoursesBySemester(ArrayList<Course> courses, ArrayList<Semester> semesters, int idSpecialty) {
+        ArrayList<CoursesBySemester> newList = new ArrayList<CoursesBySemester>();
+
+        for (Semester semester : semesters) {
+            CoursesBySemester newCoursesBySemester = new CoursesBySemester();
+            ArrayList<CourseWithReport> newCourses = new ArrayList<CourseWithReport>();
+
+            newCoursesBySemester.semester = semester;
+
+            for (Course course : courses) {
+                if (existCourseInSemester(course, semester)) {
+                    newCourses.add(getCourseWithReport(course, semester, idSpecialty));
+                }
+            }
+
+            newCoursesBySemester.coursesWithReport = new ArrayList<CourseWithReport>(newCourses);
+
+            newList.add(newCoursesBySemester);
+        }
+
+
+        return newList;
+    }
+
     public ArrayList<SpecialtyInfo> getSpecialtiesInfo() {
         ArrayList<SpecialtyInfo> newSpecialtiesInfo = new ArrayList<SpecialtyInfo>();
 
@@ -852,6 +970,8 @@ public class GetController extends Controller {
             newSpecialtyInfo.IMPROVEMENTPLANS = new ArrayList<ImprovementPlan>(getImprovementPlans(idSpecialty));
             newSpecialtyInfo.HTMLREPORT = new String(getHtmlReport(idSpecialty));
             newSpecialtyInfo.SPECCONFIG = getSpecialtyConf(idSpecialty);
+            newSpecialtyInfo.PERIODSEMESTERS = new ArrayList<Semester>(getActualSemesters(idSpecialty));
+            newSpecialtyInfo.COURSESBYSEMESTER = new ArrayList<CoursesBySemester>(getCoursesBySemester(newSpecialtyInfo.COURSES, newSpecialtyInfo.PERIODSEMESTERS, idSpecialty));
 
             newSpecialtiesInfo.add(newSpecialtyInfo);
         }

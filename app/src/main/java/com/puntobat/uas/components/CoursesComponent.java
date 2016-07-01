@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.puntobat.uas.R;
+import com.puntobat.uas.helpers.CourseWithReport;
 import com.puntobat.uas.model.Aspect;
 import com.puntobat.uas.model.Course;
 
@@ -23,12 +24,12 @@ public class CoursesComponent extends LinearLayout {
     public LinearLayout linearLayout;
     public Context _context;
     public String title;
-    public ArrayList<Course> listCourses;
+    public ArrayList<CourseWithReport> listCourses;
     public TextView txtTitulo;
     public LinearLayout auxiliar;
 
 
-    public CoursesComponent(Context context, String titulo, ArrayList<Course> lista) {
+    public CoursesComponent(Context context, String titulo, ArrayList<CourseWithReport> lista) {
         super(context);
         this._context = context;
         this.title = titulo;
@@ -48,8 +49,8 @@ public class CoursesComponent extends LinearLayout {
 
         this.auxiliar = (LinearLayout) findViewById(R.id.component_courses_list);
 
-        for (Course c : listCourses) {
-            CourseComponent component = new CourseComponent(_context, c);
+        for (CourseWithReport c : listCourses) {
+            CourseComponent component = new CourseComponent(_context, c.course,c.reportBySemester);
             this.auxiliar.addView(component);
         }
 
