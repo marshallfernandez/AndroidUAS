@@ -5,7 +5,8 @@ package com.puntobat.uas.constans;
  */
 public class FrameworkConstans {
 
-    public static String SERVER_DOMAIN = "http://52.38.157.8/api/";
+    //public static String SERVER_DOMAIN = "http://52.38.157.8/api/";
+    public static String SERVER_DOMAIN = "http://52.89.227.55/api/";
     public static String LOGIN_PATH = "authenticate";
     public static String SPECIALTIES_PATH = "faculties?since=1463183832";
     public static String ASPECTS_PATH = "/aspects?since=1463183832";

@@ -44,7 +44,7 @@
                     android:orientation="horizontal"
                     android:layout_gravity="center_horizontal">
 
-                    <TextView
+                    <TextView android:id="@+id/fragment_courses_semester_title"
                         style="@style/GeneralTextViewsMedium"
                         android:text="Mostrando cursos del Ciclo:"
                         android:textColor="@color/uas_plomo_oscuro"

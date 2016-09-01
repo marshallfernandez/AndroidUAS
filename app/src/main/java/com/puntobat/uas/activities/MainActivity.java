@@ -108,9 +108,12 @@ public class MainActivity extends AppCompatActivity {
         roleProfile.setText(role);
         facultyProfile.setText(faculty);
 
-        ArrayList<Semester> aux = UAS.SPECIALTIESINFO.get(0).PERIODSEMESTERS;
+        ArrayList<Semester> aux = UAS.SPECIALTIESINFO.get(UAS.INFOINDEX).PERIODSEMESTERS;
 
-        periodProfile.setText("Periodo Actual: " + aux.get(0).getDescription() + " al " + aux.get(aux.size() - 1).getDescription());
+        if (!aux.isEmpty())
+            periodProfile.setText("Periodo Actual: " + aux.get(0).getDescription() + " al " + aux.get(aux.size() - 1).getDescription());
+        else
+            periodProfile.setText("Aún no se ha registrado un periodo");
 
         navNumSpec.setText(String.valueOf(UAS.SPECIALTIES.size()));
 
@@ -121,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
                 homeLinear.setSelected(true);
                 abTitle.setText(R.string.uas_ab_inicio);
 
-                for(int i = 0; i < UAS.FRAGMENTMNGR.getBackStackEntryCount(); ++i) {
+                for (int i = 0; i < UAS.FRAGMENTMNGR.getBackStackEntryCount(); ++i) {
                     UAS.FRAGMENTMNGR.popBackStack();
                 }
 
@@ -147,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                 objectivesLinear.setSelected(true);
                 abTitle.setText(R.string.uas_nav_objEd);
 
-                for(int i = 0; i < UAS.FRAGMENTMNGR.getBackStackEntryCount(); ++i) {
+                for (int i = 0; i < UAS.FRAGMENTMNGR.getBackStackEntryCount(); ++i) {
                     UAS.FRAGMENTMNGR.popBackStack();
                 }
 
@@ -164,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
                 resultStudLinear.setSelected(true);
                 abTitle.setText(R.string.uas_nav_resEst);
 
-                for(int i = 0; i < UAS.FRAGMENTMNGR.getBackStackEntryCount(); ++i) {
+                for (int i = 0; i < UAS.FRAGMENTMNGR.getBackStackEntryCount(); ++i) {
                     UAS.FRAGMENTMNGR.popBackStack();
                 }
 
@@ -181,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
                 aspectsLinear.setSelected(true);
                 abTitle.setText(R.string.uas_nav_aspectos);
 
-                for(int i = 0; i < UAS.FRAGMENTMNGR.getBackStackEntryCount(); ++i) {
+                for (int i = 0; i < UAS.FRAGMENTMNGR.getBackStackEntryCount(); ++i) {
                     UAS.FRAGMENTMNGR.popBackStack();
                 }
 
@@ -198,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
                 coursesLinear.setSelected(true);
                 abTitle.setText(R.string.uas_nav_cursos);
 
-                for(int i = 0; i < UAS.FRAGMENTMNGR.getBackStackEntryCount(); ++i) {
+                for (int i = 0; i < UAS.FRAGMENTMNGR.getBackStackEntryCount(); ++i) {
                     UAS.FRAGMENTMNGR.popBackStack();
                 }
 
@@ -215,7 +218,7 @@ public class MainActivity extends AppCompatActivity {
                 improveLinear.setSelected(true);
                 abTitle.setText(R.string.uas_nav_mejora);
 
-                for(int i = 0; i < UAS.FRAGMENTMNGR.getBackStackEntryCount(); ++i) {
+                for (int i = 0; i < UAS.FRAGMENTMNGR.getBackStackEntryCount(); ++i) {
                     UAS.FRAGMENTMNGR.popBackStack();
                 }
 
@@ -232,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
                 resultEvalLinear.setSelected(true);
                 abTitle.setText(R.string.uas_nav_resEval);
 
-                for(int i = 0; i < UAS.FRAGMENTMNGR.getBackStackEntryCount(); ++i) {
+                for (int i = 0; i < UAS.FRAGMENTMNGR.getBackStackEntryCount(); ++i) {
                     UAS.FRAGMENTMNGR.popBackStack();
                 }
 
@@ -265,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
                         .setNegativeButton(R.string.uas_alert_no, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                for(int i = 0; i < UAS.FRAGMENTMNGR.getBackStackEntryCount(); ++i) {
+                                for (int i = 0; i < UAS.FRAGMENTMNGR.getBackStackEntryCount(); ++i) {
                                     UAS.FRAGMENTMNGR.popBackStack();
                                 }
                             }
