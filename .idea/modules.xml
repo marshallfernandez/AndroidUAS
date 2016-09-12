@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/AndroidUAS.iml" filepath="$PROJECT_DIR$/AndroidUAS.iml" />
       <module fileurl="file://$PROJECT_DIR$/UAS.iml" filepath="$PROJECT_DIR$/UAS.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
